@@ -1,7 +1,6 @@
 import React from 'react';
 import { ChevronDown, ArrowRight, FileText } from 'lucide-react';
 import { SectionId } from '../types';
-import heroImage from '/images/image-accueil.jpg';
 
 interface HeroProps {
   scrollToSection: (id: SectionId) => void;
@@ -15,7 +14,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToSection, openQuoteModal }) => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url(${heroImage})`,
+          backgroundImage: 'url("/images/image-accueil.jpg")',
         }}
       >
         {/* Simple uniform overlay for text readability */}

@@ -1,42 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { Sprout, Truck, Hammer, Tractor, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Chargement automatique de toutes les images par catégorie
-const imageModules = import.meta.glob('/images/**/*.{jpg,jpeg,png,webp}', { eager: true, query: '?url', import: 'default' });
-
 const Services: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Générer automatiquement la liste des images depuis les dossiers
-  const carouselImages = Object.entries(imageModules).map(([path, url]) => {
-    // Extraire le nom de la catégorie depuis le chemin
-    const match = path.match(/images\/([^/]+)\//);
-    const categoryFolder = match ? match[1] : 'Autre';
+  // Configuration manuelle des images par catégorie
+  // Pour ajouter des images : ajoutez-les dans public/images/[categorie]/ et listez-les ici
+  const carouselImages = [
+    // Plantation
+    { src: '/images/plantation/planteuse-pommes-de-terre.jpg', title: 'Planteuse Pommes De Terre', category: 'Plantation' },
+    { src: '/images/plantation/semis-precision.jpg', title: 'Semis Précision', category: 'Plantation' },
+    { src: '/images/plantation/semis-rangees.jpg', title: 'Semis Rangées', category: 'Plantation' },
     
-    // Capitaliser et traduire les noms de catégorie
-    const categoryNames: Record<string, string> = {
-      'plantation': 'Plantation',
-      'arrachage': 'Arrachage',
-      'preparation': 'Préparation',
-      'entretien': 'Entretien',
-      'fourrage': 'Fourrage',
-      'specialite': 'Spécialité'
-    };
+    // Arrachage
+    { src: '/images/arrachage/recolte-batteuse.jpg', title: 'Récolte Batteuse', category: 'Arrachage' },
+    { src: '/images/arrachage/moisson-ete.jpg', title: 'Moisson Été', category: 'Arrachage' },
+    { src: '/images/arrachage/recolte-cereales.jpg', title: 'Récolte Céréales', category: 'Arrachage' },
     
-    // Extraire le nom du fichier sans extension et le formater joliment
-    const fileName = path.split('/').pop()?.replace(/\.(jpg|jpeg|png|webp)$/i, '') || '';
-    // Convertir les tirets en espaces et capitaliser chaque mot
-    const formattedTitle = fileName
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+    // Préparation
+    { src: '/images/preparation/labour-profond.jpg', title: 'Labour Profond', category: 'Préparation' },
+    { src: '/images/preparation/travail-du-sol.jpg', title: 'Travail Du Sol', category: 'Préparation' },
+    { src: '/images/preparation/dechaumage.jpg', title: 'Déchaumage', category: 'Préparation' },
+    { src: '/images/preparation/preparation-terrain.jpg', title: 'Préparation Terrain', category: 'Préparation' },
+    { src: '/images/preparation/preparation-sol-franquet.jpg', title: 'Préparation Sol Franquet', category: 'Préparation' },
+    { src: '/images/preparation/compactage-sol.jpg', title: 'Compactage Sol', category: 'Préparation' },
+    { src: '/images/preparation/tassage-terrain.jpg', title: 'Tassage Terrain', category: 'Préparation' },
     
-    return {
-      src: url as string,
-      title: formattedTitle,
-      category: categoryNames[categoryFolder] || categoryFolder
-    };
-  });
+    // Entretien
+    { src: '/images/entretien/fauchage-bordures.jpg', title: 'Fauchage Bordures', category: 'Entretien' },
+    { src: '/images/entretien/entretien-haies.jpg', title: 'Entretien Haies', category: 'Entretien' },
+    
+    // Fourrage
+    { src: '/images/fourrage/pressage-foin.jpg', title: 'Pressage Foin', category: 'Fourrage' },
+    { src: '/images/fourrage/pressage-herbe.jpg', title: 'Pressage Herbe', category: 'Fourrage' },
+  ];
 
   useEffect(() => {
     const timer = setInterval(() => {
