@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Sprout, Truck, Hammer, Tractor, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Import automatique de toutes les images depuis public/images/**/
-const imageModules = import.meta.glob<string>('/images/**/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', { 
-  eager: true,
-  import: 'default'
+// Utiliser le chemin absolu depuis la racine du projet
+const imageModules = import.meta.glob<{ default: string }>('../public/images/**/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', { 
+  eager: true
 });
 
 const Services: React.FC = () => {
@@ -16,7 +16,9 @@ const Services: React.FC = () => {
       // Ignorer l'image d'accueil et le README
       return !path.includes('image-accueil') && !path.includes('README');
     })
-    .map(([path, url]) => {
+    .map(([path, module]) => {
+      const url = module.default;
+      
       // Extraire le nom du dossier (catégorie)
       const pathParts = path.split('/');
       const categoryFolder = pathParts[pathParts.length - 2]; // Dossier parent
@@ -37,6 +39,8 @@ const Services: React.FC = () => {
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ');
       
+      console.log('Image loaded:', { path, url, category, title: formattedTitle });
+      
       return {
         src: url,
         title: formattedTitle,
@@ -50,6 +54,8 @@ const Services: React.FC = () => {
       }
       return a.title.localeCompare(b.title);
     });
+
+  console.log('Total images in carousel:', carouselImages.length);
 
   useEffect(() => {
     const timer = setInterval(() => {

@@ -1,205 +1,142 @@
-# 📸 Guide complet pour gérer les images du site
+# 📸 Guide des images du site
 
-Ce guide explique comment modifier les images du site **sans avoir besoin de coder**.
-
-**🎉 BONNE NOUVELLE : Le système est 100% AUTOMATIQUE !**
-Vous n'avez **JAMAIS** besoin de modifier le code. Ajoutez simplement vos images dans les bons dossiers.
+**Tout est automatique ! Vous n'avez JAMAIS à toucher au code.**
 
 ---
 
-## 🖼️ CHANGER L'IMAGE D'ACCUEIL
+## 🖼️ Changer l'image d'accueil
 
 L'image d'accueil est la grande photo de fond sur la page principale.
 
-### Étapes pour la remplacer :
+**Comment faire :**
+1. Prenez votre nouvelle image (formats acceptés : JPG, PNG, WEBP)
+2. Renommez-la : `image-accueil.jpg`
+3. Remplacez le fichier dans : `public/images/image-accueil.jpg`
+4. Publiez : `yarn build && yarn deploy`
 
-1. **Trouvez votre nouvelle image** (elle doit être au format JPG, JPEG, PNG ou WEBP)
-2. **Renommez-la** exactement comme ceci : `image-accueil.jpg`
-3. **Remplacez** l'ancien fichier situé dans : `public/images/image-accueil.jpg`
-
-⚠️ **IMPORTANT** : Le nom du fichier doit être EXACTEMENT `image-accueil.jpg` (avec un tiret, en minuscules)
+⚠️ Le nom doit être **exactement** `image-accueil.jpg`
 
 ---
 
-## 🎠 GÉRER LE CARROUSEL DE PHOTOS
+## 🎠 Gérer le carrousel
 
-Le carrousel charge **AUTOMATIQUEMENT** toutes les photos depuis les dossiers de catégories.
+Le carrousel affiche automatiquement toutes vos photos.
 
-### 📁 Les dossiers = Les catégories
+### 📁 Comment ça marche ?
 
-Chaque dossier dans `public/images/` devient automatiquement une catégorie :
+**Les dossiers = Les catégories**
 
 ```
 public/images/
-├── plantation/         → Toutes les photos ici = catégorie "Plantation"
-├── arrachage/          → Toutes les photos ici = catégorie "Arrachage"
-├── preparation/        → Toutes les photos ici = catégorie "Préparation"
-├── entretien/          → Toutes les photos ici = catégorie "Entretien"
-├── fourrage/           → Toutes les photos ici = catégorie "Fourrage"
-└── transport/          → Toutes les photos ici = catégorie "Transport"
-```
-
-**💡 Le système détecte automatiquement :**
-- ✅ Tous les dossiers
-- ✅ Toutes les images dans chaque dossier
-- ✅ Les titres depuis les noms de fichiers
-
----
-
-## ➕ AJOUTER UNE NOUVELLE PHOTO AU CARROUSEL
-
-### Étape 1 : Choisissez la catégorie
-Décidez dans quelle catégorie va votre photo (plantation, arrachage, etc.)
-
-### Étape 2 : Nommez votre photo
-Donnez-lui un nom descriptif avec des **tirets** entre les mots :
-- ✅ BON : `semis-printemps-2025.jpg`
-- ✅ BON : `labour-automne.jpg`
-- ❌ MAUVAIS : `IMG_1234.jpg`
-- ❌ MAUVAIS : `photo avec espaces.jpg`
-
-**Le nom devient automatiquement le titre :**
-- `semis-printemps-2025.jpg` → affiche "Semis Printemps 2025"
-- `labour-automne.jpg` → affiche "Labour Automne"
-
-### Étape 3 : Copiez la photo
-Placez votre photo dans le dossier de la catégorie :
-```
-public/images/plantation/semis-printemps-2025.jpg
-```
-
-### Étape 4 : C'EST TOUT ! 🎉
-Pas besoin de modifier le code. Compilez simplement :
-```bash
-yarn build
-yarn deploy
+├── plantation/      → Toutes les photos = catégorie "Plantation"
+├── arrachage/       → Toutes les photos = catégorie "Arrachage"
+├── preparation/     → Toutes les photos = catégorie "Préparation"
+└── transport/       → Toutes les photos = catégorie "Transport"
 ```
 
 ---
 
-## 🗑️ SUPPRIMER UNE PHOTO DU CARROUSEL
+## ➕ Ajouter une photo
 
-**Super simple :**
+1. **Nommez votre photo** avec des tirets :
+   - ✅ `semis-printemps-2025.jpg`
+   - ✅ `labour-automne.jpg`
+   - ❌ `IMG_1234.jpg`
+   - ❌ `photo avec espaces.jpg`
 
-1. Supprimez le fichier image du dossier
-2. C'est tout ! Lancez juste :
-```bash
-yarn build
-yarn deploy
-```
+2. **Copiez-la** dans le bon dossier :
+   ```
+   public/images/plantation/semis-printemps-2025.jpg
+   ```
+
+3. **Publiez** :
+   ```bash
+   yarn build
+   yarn deploy
+   ```
+
+**Le nom devient le titre :**
+- `semis-printemps-2025.jpg` → "Semis Printemps 2025"
 
 ---
 
-## 📂 CRÉER UNE NOUVELLE CATÉGORIE
+## 🗑️ Supprimer une photo
 
-### C'est 100% AUTOMATIQUE ! 🎉
+1. Supprimez le fichier du dossier
+2. Publiez : `yarn build && yarn deploy`
 
-**Il suffit de créer un dossier et d'y mettre des images.**
+---
 
-### Étape 1 : Créez le dossier
-Créez un nouveau dossier dans `public/images/`
-Exemple : `public/images/transport/` ou `public/images/travaux-speciaux/`
+## 📂 Créer une nouvelle catégorie
 
-### Étape 2 : Ajoutez des photos
-Placez vos photos dans ce nouveau dossier avec des noms descriptifs
+1. **Créez un dossier** dans `public/images/`
+   Exemple : `public/images/transport/`
 
-### Étape 3 : C'EST TOUT ! 🎉
+2. **Ajoutez des photos** dedans
 
-**Le nom du dossier devient automatiquement la catégorie :**
+3. **Publiez** : `yarn build && yarn deploy`
+
+**Le nom du dossier devient la catégorie :**
 - `transport/` → "Transport"
 - `travaux-speciaux/` → "Travaux Speciaux"
-- `manutention/` → "Manutention"
-
-**Le système capitalise automatiquement chaque mot !**
-
-### Publiez
-```bash
-yarn build
-yarn deploy
-```
 
 ---
 
-## ✏️ RENOMMER UNE CATÉGORIE
+## ✏️ Renommer une catégorie
 
-### Option 1 : Renommer le dossier
 Renommez simplement le dossier :
 ```bash
 mv public/images/plantation public/images/semis
 ```
 
-### Option 2 : Changer seulement l'affichage
-Dans `components/Services.tsx`, ajoutez/modifiez dans `categoryTranslations` :
-```typescript
-'plantation': 'Semis et Plantation',  // Change l'affichage sans renommer le dossier
-```
+Puis publiez : `yarn build && yarn deploy`
 
 ---
 
-## ❌ SUPPRIMER UNE CATÉGORIE ENTIÈRE
+## ❌ Supprimer une catégorie
 
-1. Supprimez le dossier complet : `public/images/fourrage/`
-2. C'est tout ! Le système ne chargera plus ces images
-3. Publiez :
+1. Supprimez le dossier complet
+2. Publiez : `yarn build && yarn deploy`
+
+---
+
+## 🚀 Publier les modifications
+
+**Après CHAQUE modification :**
+
 ```bash
 yarn build
 yarn deploy
 ```
 
----
-
-## 🚀 PUBLIER VOS MODIFICATIONS
-
-**Après CHAQUE modification**, vous devez publier le site :
-
-```bash
-# Étape 1 : Compiler le site
-yarn build
-
-# Étape 2 : Déployer en ligne
-yarn deploy
-```
-
-⏱️ Attendez 1-2 minutes que les modifications soient visibles en ligne.
+Attendez 1-2 minutes pour voir les changements en ligne.
 
 ---
 
-## 📝 RÈGLES IMPORTANTES
+## 📝 Règles importantes
 
 ✅ **À FAIRE :**
-- Nommer les fichiers avec des tirets : `mon-image-2025.jpg`
-- Utiliser des formats : `.jpg`, `.jpeg`, `.png`, `.webp`
-- Mettre les images dans les bons dossiers de catégories
-- Toujours lancer `yarn build` puis `yarn deploy` après une modification
+- Nommer avec des tirets : `ma-photo-2025.jpg`
+- Formats : `.jpg`, `.jpeg`, `.png`, `.webp`
+- Mettre dans les sous-dossiers de catégories
 
 ❌ **À ÉVITER :**
 - Espaces dans les noms : `ma photo.jpg`
-- Accents dans les noms de fichiers : `récolte.jpg` → utilisez `recolte.jpg`
-- Mettre des images directement dans `public/images/` (utilisez les sous-dossiers)
+- Accents : `récolte.jpg` → utilisez `recolte.jpg`
+- Images directement dans `public/images/` (utilisez les sous-dossiers)
 
 ---
 
-## 🆘 EN CAS DE PROBLÈME
+## 🎯 Résumé rapide
 
-Si le site ne s'affiche pas correctement :
-
-1. Vérifiez que tous les noms de fichiers sont corrects (pas d'espaces, pas d'accents)
-2. Vérifiez que les images sont dans des sous-dossiers (pas à la racine de `images/`)
-3. Relancez `yarn build` pour voir les erreurs
-4. Videz le cache de votre navigateur (Ctrl+Shift+R ou Cmd+Shift+R)
-
----
-
-## 🎯 RÉSUMÉ - CE QUE VOUS DEVEZ SAVOIR
-
-**Pour ajouter une image :**
-1. Nommez-la avec des tirets : `ma-photo.jpg`
-2. Mettez-la dans le bon dossier : `public/images/[categorie]/ma-photo.jpg`
+**Ajouter une photo :**
+1. Nommez-la : `ma-photo.jpg`
+2. Copiez dans : `public/images/[categorie]/ma-photo.jpg`
 3. Publiez : `yarn build && yarn deploy`
 
-**Pour créer une catégorie :**
-1. Créez un dossier : `public/images/nouvelle-categorie/`
-2. Ajoutez des images dedans
+**Créer une catégorie :**
+1. Créez : `public/images/nouvelle-categorie/`
+2. Ajoutez des photos
 3. Publiez : `yarn build && yarn deploy`
 
-**Tout est automatique ! Aucun code à modifier !** 🎉
+**Tout se met à jour automatiquement ! 🎉**
