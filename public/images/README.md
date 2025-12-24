@@ -1,5 +1,15 @@
 # Comment ajouter des images au site
 
+## 🖼️ Image d'accueil (fond de la page principale)
+
+Pour changer l'image d'accueil du site, **remplacez simplement le fichier** :
+
+```
+public/images/image-accueil.jpg
+```
+
+⚠️ **Important** : Le fichier doit s'appeler exactement `image-accueil.jpg` (formats acceptés : `.jpg`, `.jpeg`, `.png`, `.webp`)
+
 ## Structure des dossiers
 
 Chaque dossier représente une **catégorie** qui apparaîtra sur le carrousel :

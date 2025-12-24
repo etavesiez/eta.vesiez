@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChevronDown, ArrowRight, FileText } from 'lucide-react';
 import { SectionId } from '../types';
-import heroImage from '/images/specialite/pdt.jpg';
+import heroImage from '/images/image-accueil.jpg';
 
 interface HeroProps {
   scrollToSection: (id: SectionId) => void;
