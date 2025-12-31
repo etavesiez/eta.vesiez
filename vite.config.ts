@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
     plugins: [react()],
-    base: './', // Ensures assets are linked relatively for GitHub Pages
+    base: '/ETA-Vesiez/', // Chemin de base correct pour GitHub Pages
     define: {
       // Polyfill process.env.API_KEY for the GenAI SDK in the browser
       'process.env.API_KEY': JSON.stringify(env.API_KEY || '')
