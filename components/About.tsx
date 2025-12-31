@@ -7,7 +7,7 @@ const About: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="w-full lg:w-1/2 flex flex-col items-center gap-6">
             <img
-              src="/images/logo/carre light.png"
+              src="/images/logo/carre_light.png"
               alt="Logo carré ETA Vesiez"
               className="rounded-2xl w-48 h-48 object-contain border border-brand-cream bg-white shadow"
             />

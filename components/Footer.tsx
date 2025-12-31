@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex flex-col items-center md:items-start">
           <img
-            src="/images/logo/bandeau simple light.png"
+            src="/images/logo/bandeau_simple_light.png"
             alt="Logo ETA Vesiez"
             className="h-10 w-auto mb-2"
             style={{ maxWidth: 160 }}

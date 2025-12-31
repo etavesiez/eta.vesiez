@@ -27,7 +27,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToSection, openQuoteModal }) => {
         </div>
         
         <img
-          src="/images/logo/bandeau blanc.png"
+          src="/images/logo/bandeau_blanc.png"
           alt="Logo ETA Vesiez"
           className="mx-auto mb-6 max-w-[600px] w-full drop-shadow-lg"
         />
