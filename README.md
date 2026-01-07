@@ -1,20 +1,63 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
 
-# Run and deploy your AI Studio app
+# ETA Vésiez
 
-This contains everything you need to run your app locally.
+Site vitrine pour l'entreprise ETA Vésiez, réalisé avec React, Vite, Tailwind CSS et TypeScript.
 
-View your app in AI Studio: https://ai.studio/apps/drive/14JTDia_s3ZzW0zvIk8Wu2-cOiEAUk1fq
+🚀 **Déploiement en ligne :**
+👉 https://etavesiez.github.io/ETA-Vesiez/
 
-## Run Locally
+---
 
-**Prerequisites:**  Node.js
+## Fonctionnalités principales
 
+- Présentation de l'entreprise et de ses services
+- Formulaire de contact
+- Génération de devis assistée par IA (Gemini)
+- Responsive design
+- Intégration réseaux sociaux
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Démarrage local
+
+**Prérequis :** Node.js, Yarn ou npm
+
+1. Installer les dépendances :
+   ```sh
+   yarn install
+   # ou
+   npm install
+   ```
+2. Ajouter votre clé API Gemini dans un fichier `.env.local` :
+   ```env
+   GEMINI_API_KEY=VOTRE_CLE_API
+   ```
+3. Lancer le serveur de développement :
+   ```sh
+   yarn dev
+   # ou
+   npm run dev
+   ```
+
+## Déploiement
+
+- **Automatique** : via GitHub Actions sur chaque push sur `main` (voir `.github/workflows/deploy.yml`)
+- **Manuel** :
+   ```sh
+   yarn build
+   yarn deploy
+   ```
+  (Nécessite un token GitHub si dépôt privé)
+
+## Stack technique
+
+- React 19
+- Vite
+- Tailwind CSS
+- TypeScript
+- Gemini API (Google)
+
+## Auteur
+
+Louis Vésiez / Camille Vésiez
+
+---
+© 2025 ETA Vésiez
