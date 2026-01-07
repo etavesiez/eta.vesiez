@@ -1,0 +1,47 @@
+[
+  {
+    "champ": "nom",
+    "label": "Nom",
+    "type": "text",
+    "placeholder": "Votre nom",
+    "obligatoire": true
+  },
+  {
+    "champ": "email",
+    "label": "Email",
+    "type": "email",
+    "placeholder": "votre@email.com",
+    "obligatoire": true
+  },
+  {
+    "champ": "telephone",
+    "label": "Téléphone",
+    "type": "tel",
+    "placeholder": "06 12 34 56 78",
+    "obligatoire": false
+  },
+  {
+    "champ": "prestation",
+    "label": "Prestation souhaitée",
+    "type": "select",
+    "options": [
+      "Plantation de pommes de terre 90cm",
+      "Arrachage",
+      "Moisson",
+      "Semis en ligne",
+      "Epareuse",
+      "Labour",
+      "Préparation du sol",
+      "Tassage de silo",
+      "Pressage de balles rondes"
+    ],
+    "obligatoire": true
+  },
+  {
+    "champ": "message",
+    "label": "Message",
+    "type": "textarea",
+    "placeholder": "Décrivez votre besoin...",
+    "obligatoire": false
+  }
+]

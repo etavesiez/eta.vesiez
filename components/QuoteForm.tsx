@@ -22,33 +22,44 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
     };
   }, [isOpen]);
 
-  // Form State
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    services: [] as string[],
-    message: ''
-  });
 
-  const predefinedServices = [
-    "Plantation de pommes de terre",
-    "Arrachage de pommes de terre",
-    "Location Manuscopic + Chauffeur",
-    "Location Benne",
-    "Autre"
-  ];
+  // Form fields from devis.json
+  const [fields, setFields] = useState<any[]>([]);
+  const [formData, setFormData] = useState<any>({});
 
-  const handleServiceChange = (service: string) => {
-    setFormData(prev => {
-      const exists = prev.services.includes(service);
-      if (exists) {
-        return { ...prev, services: prev.services.filter(s => s !== service) };
+  useEffect(() => {
+    fetch('/texte/devis.json')
+      .then(res => res.json())
+      .then((data) => {
+        setFields(data);
+        // Init formData with empty values
+        const initial: any = {};
+        data.forEach((f: any) => {
+          if (f.type === 'select') initial[f.champ] = [];
+          else initial[f.champ] = '';
+        });
+        setFormData(initial);
+      });
+  }, []);
+
+
+  // Pour les champs select (multi ou simple)
+  const handleSelectChange = (champ: string, value: string) => {
+    setFormData((prev: any) => {
+      const current = prev[champ] || [];
+      if (current.includes(value)) {
+        return { ...prev, [champ]: current.filter((v: string) => v !== value) };
       } else {
-        return { ...prev, services: [...prev.services, service] };
+        return { ...prev, [champ]: [...current, value] };
       }
     });
   };
+
+  // Pour les autres champs
+  const handleInputChange = (champ: string, value: string) => {
+    setFormData((prev: any) => ({ ...prev, [champ]: value }));
+  };
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,9 +68,16 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
     setSubmitted(true);
   };
 
+
   const resetForm = () => {
     setSubmitted(false);
-    setFormData({ name: '', email: '', phone: '', services: [], message: '' });
+    // Réinitialise tous les champs
+    const initial: any = {};
+    fields.forEach((f: any) => {
+      if (f.type === 'select') initial[f.champ] = [];
+      else initial[f.champ] = '';
+    });
+    setFormData(initial);
   };
 
   if (!isOpen) return null;
@@ -117,128 +135,150 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                
-                {/* Services Selection */}
-                <div>
-                  <label className="block text-sm font-block font-bold text-brand-green mb-3 uppercase tracking-wide">
-                    Prestations souhaitées
-                  </label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {predefinedServices.map((service) => (
-                      <label key={service} className="flex items-center space-x-3 cursor-pointer group">
-                        <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors flex-shrink-0 ${
-                          formData.services.includes(service) ? 'bg-brand-green border-brand-green' : 'border-gray-300 bg-white group-hover:border-brand-gold'
-                        }`}>
-                          {formData.services.includes(service) && <CheckCircle className="h-3 w-3 text-white" />}
+                {fields.map((field) => {
+                  if (field.type === 'select') {
+                    // Multi-select (checkboxes)
+                    return (
+                      <div key={field.champ}>
+                        <label className="block text-sm font-block font-bold text-brand-green mb-3 uppercase tracking-wide">
+                          {field.label}
+                        </label>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {field.options.map((option: string) => (
+                            <label key={option} className="flex items-center space-x-3 cursor-pointer group">
+                              <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors flex-shrink-0 ${
+                                (formData[field.champ] || []).includes(option) ? 'bg-brand-green border-brand-green' : 'border-gray-300 bg-white group-hover:border-brand-gold'
+                              }`}>
+                                {(formData[field.champ] || []).includes(option) && <CheckCircle className="h-3 w-3 text-white" />}
+                              </div>
+                              <input
+                                type="checkbox"
+                                className="hidden"
+                                checked={(formData[field.champ] || []).includes(option)}
+                                onChange={() => handleSelectChange(field.champ, option)}
+                              />
+                              <span className={`text-sm ${(formData[field.champ] || []).includes(option) ? 'text-brand-green font-medium' : 'text-brand-brown'}`}>
+                                {option}
+                              </span>
+                            </label>
+                          ))}
                         </div>
-                        <input 
-                          type="checkbox" 
-                          className="hidden"
-                          checked={formData.services.includes(service)}
-                          onChange={() => handleServiceChange(service)}
+                      </div>
+                    );
+                  }
+                  if (field.type === 'textarea') {
+                    return (
+                      <div key={field.champ}>
+                        <label htmlFor={field.champ} className="block text-sm font-bold text-brand-green mb-2 uppercase tracking-wide">
+                          {field.label}
+                        </label>
+                        <textarea
+                          id={field.champ}
+                          rows={3}
+                          required={!!field.obligatoire}
+                          placeholder={field.placeholder}
+                          className="w-full px-4 py-3 rounded-lg bg-brand-cream/30 border border-brand-cream focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-colors"
+                          value={formData[field.champ] || ''}
+                          onChange={(e) => handleInputChange(field.champ, e.target.value)}
                         />
-                        <span className={`text-sm ${formData.services.includes(service) ? 'text-brand-green font-medium' : 'text-brand-brown'}`}>
-                          {service}
-                        </span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
+                      </div>
+                    );
+                  }
+                  if (field.type === 'email' || field.type === 'tel' || field.type === 'text') {
+                    // Contact info: handle radio for contactMethod
+                    if (field.type === 'email' || field.type === 'tel') {
+                      return null; // handled below
+                    }
+                    return (
+                      <div key={field.champ}>
+                        <input
+                          type={field.type}
+                          required={!!field.obligatoire}
+                          placeholder={field.placeholder}
+                          className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none"
+                          value={formData[field.champ] || ''}
+                          onChange={(e) => handleInputChange(field.champ, e.target.value)}
+                        />
+                      </div>
+                    );
+                  }
+                  return null;
+                })}
 
-                {/* Description */}
-                <div>
-                  <label htmlFor="message" className="block text-sm font-bold text-brand-green mb-2 uppercase tracking-wide">
-                    Détails de votre demande
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={3}
-                    required
-                    placeholder="Ex: J'ai 15 hectares à planter vers le 15 avril. Le sol est déjà préparé..."
-                    className="w-full px-4 py-3 rounded-lg bg-brand-cream/30 border border-brand-cream focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none transition-colors"
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  />
-                </div>
-
-                {/* Contact Info & Preference */}
+                {/* Contact Info & Preference (email/tel) */}
                 <div className="bg-brand-cream/30 p-6 rounded-xl space-y-4">
                   <label className="block text-sm font-bold text-brand-green uppercase tracking-wide">
                     Vos coordonnées
                   </label>
-                  
                   <div>
                     <input
                       type="text"
                       required
                       placeholder="Votre Nom / Entreprise"
                       className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none"
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      value={formData.nom || ''}
+                      onChange={(e) => handleInputChange('nom', e.target.value)}
                     />
                   </div>
-
                   <div className="flex flex-col sm:flex-row gap-4">
-                     <div className="flex-1">
-                        <label className="flex items-center gap-2 text-xs text-brand-brown mb-2 font-medium cursor-pointer">
-                          <input 
-                            type="radio" 
-                            name="contactMethod" 
-                            checked={contactMethod === 'email'} 
-                            onChange={() => setContactMethod('email')}
-                            className="accent-brand-gold"
-                          />
-                          Par Email
-                        </label>
+                    <div className="flex-1">
+                      <label className="flex items-center gap-2 text-xs text-brand-brown mb-2 font-medium cursor-pointer">
                         <input
-                          type="email"
-                          required={contactMethod === 'email'}
-                          placeholder="email@exemple.com"
-                          className={`w-full px-4 py-3 rounded-lg border focus:ring-1 outline-none transition-colors ${
-                            contactMethod === 'email' 
-                              ? 'border-brand-green bg-white ring-brand-green' 
-                              : 'border-gray-200 bg-gray-50'
-                          }`}
-                          value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          type="radio"
+                          name="contactMethod"
+                          checked={contactMethod === 'email'}
+                          onChange={() => setContactMethod('email')}
+                          className="accent-brand-gold"
                         />
-                     </div>
-
-                     <div className="flex-1">
-                        <label className="flex items-center gap-2 text-xs text-brand-brown mb-2 font-medium cursor-pointer">
-                          <input 
-                            type="radio" 
-                            name="contactMethod" 
-                            checked={contactMethod === 'phone'} 
-                            onChange={() => setContactMethod('phone')}
-                            className="accent-brand-gold"
-                          />
-                          Par Téléphone
-                        </label>
+                        Par Email
+                      </label>
+                      <input
+                        type="email"
+                        required={contactMethod === 'email'}
+                        placeholder="email@exemple.com"
+                        className={`w-full px-4 py-3 rounded-lg border focus:ring-1 outline-none transition-colors ${
+                          contactMethod === 'email'
+                            ? 'border-brand-green bg-white ring-brand-green'
+                            : 'border-gray-200 bg-gray-50'
+                        }`}
+                        value={formData.email || ''}
+                        onChange={(e) => handleInputChange('email', e.target.value)}
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="flex items-center gap-2 text-xs text-brand-brown mb-2 font-medium cursor-pointer">
                         <input
-                          type="tel"
-                          required={contactMethod === 'phone'}
-                          placeholder="06 12 34 56 78"
-                          className={`w-full px-4 py-3 rounded-lg border focus:ring-1 outline-none transition-colors ${
-                            contactMethod === 'phone' 
-                              ? 'border-brand-green bg-white ring-brand-green' 
-                              : 'border-gray-200 bg-gray-50'
-                          }`}
-                          value={formData.phone}
-                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                          type="radio"
+                          name="contactMethod"
+                          checked={contactMethod === 'phone'}
+                          onChange={() => setContactMethod('phone')}
+                          className="accent-brand-gold"
                         />
-                     </div>
+                        Par Téléphone
+                      </label>
+                      <input
+                        type="tel"
+                        required={contactMethod === 'phone'}
+                        placeholder="06 12 34 56 78"
+                        className={`w-full px-4 py-3 rounded-lg border focus:ring-1 outline-none transition-colors ${
+                          contactMethod === 'phone'
+                            ? 'border-brand-green bg-white ring-brand-green'
+                            : 'border-gray-200 bg-gray-50'
+                        }`}
+                        value={formData.telephone || ''}
+                        onChange={(e) => handleInputChange('telephone', e.target.value)}
+                      />
+                    </div>
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-brand-gold text-brand-brown font-bold rounded-full hover:bg-opacity-90 transition-transform hover:scale-[1.01] flex items-center justify-center gap-2 text-lg shadow-sm"
+                  className="w-full py-3 bg-brand-gold text-brand-brown font-bold rounded-full hover:bg-opacity-90 transition-transform hover:scale-[1.01] flex items-center justify-center gap-2 text-base shadow-sm"
                 >
                   <Send className="h-5 w-5" />
                   Envoyer la demande
                 </button>
-
               </form>
             </>
           )}
