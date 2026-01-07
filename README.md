@@ -23,11 +23,30 @@ Chaque bloc correspond à une prestation :
 - `desc` : la description (petit texte)
 - `icon` : le nom d'une icône Lucide (voir ci-dessous)
 
+
 ### Icônes Lucide : comment ça marche ?
 - Va sur https://lucide.dev/icons/
 - Cherche une icône qui te plaît (ex : "Tractor", "Hammer", "Sprout", "Truck"...)
-- Mets le nom exact dans le champ `icon` du JSON
-- Si tu ne mets rien ou si le nom est faux, une icône par défaut sera affichée
+- **IMPORTANT :** Mets le nom exact du composant React dans le champ `icon` du JSON :
+  - Le nom commence toujours par une majuscule (ex : `Tractor`)
+  - Pas d'espaces, pas de tirets, pas d'accents (ex : `TreeDeciduous` et non `tree-deciduous`)
+  - Si le nom affiché sur le site Lucide est en plusieurs mots, écris-le en "CamelCase" (ex : `TreeDeciduous`, `Columns4`)
+  - Si tu ne mets rien ou si le nom est faux, une icône par défaut sera affichée
+
+#### Exemples de noms valides :
+```json
+"icon": "Tractor"
+"icon": "Hammer"
+"icon": "Sprout"
+"icon": "TreeDeciduous"
+"icon": "Columns4"
+```
+
+#### Comment trouver le bon nom ?
+- Clique sur une icône sur https://lucide.dev/icons/ : le nom du composant React est affiché en haut à droite (ex : `<TreeDeciduous />`)
+- Copie ce nom (sans les chevrons ni le slash) et colle-le dans le champ `icon` du JSON
+
+---
 
 ---
 
