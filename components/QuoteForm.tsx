@@ -134,6 +134,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                 Sélectionnez vos prestations et expliquez votre besoin. Je vous réponds rapidement.
               </p>
 
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 {fields.map((field) => {
                   if (field.type === 'select') {
@@ -185,12 +186,43 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                     );
                   }
                   if (field.type === 'email' || field.type === 'tel' || field.type === 'text') {
-                    // Contact info: handle radio for contactMethod
+                    // Pour email/tel, on propose le choix du mode de contact si champ email ou tel
                     if (field.type === 'email' || field.type === 'tel') {
-                      return null; // handled below
+                      return (
+                        <div key={field.champ}>
+                          <div className="flex items-center gap-2 mb-2">
+                            <input
+                              type="radio"
+                              name="contactMethod"
+                              checked={contactMethod === field.type.replace('email', 'email').replace('tel', 'phone')}
+                              onChange={() => setContactMethod(field.type === 'email' ? 'email' : 'phone')}
+                              className="accent-brand-gold"
+                            />
+                            <span className="text-xs text-brand-brown font-medium cursor-pointer">
+                              {field.type === 'email' ? 'Par Email' : 'Par Téléphone'}
+                            </span>
+                          </div>
+                          <input
+                            type={field.type}
+                            required={contactMethod === (field.type === 'email' ? 'email' : 'phone') && !!field.obligatoire}
+                            placeholder={field.placeholder}
+                            className={`w-full px-4 py-3 rounded-lg border focus:ring-1 outline-none transition-colors ${
+                              contactMethod === (field.type === 'email' ? 'email' : 'phone')
+                                ? 'border-brand-green bg-white ring-brand-green'
+                                : 'border-gray-200 bg-gray-50'
+                            }`}
+                            value={formData[field.champ] || ''}
+                            onChange={(e) => handleInputChange(field.champ, e.target.value)}
+                          />
+                        </div>
+                      );
                     }
+                    // Champ text classique
                     return (
                       <div key={field.champ}>
+                        <label htmlFor={field.champ} className="block text-sm font-bold text-brand-green mb-2 uppercase tracking-wide">
+                          {field.label}
+                        </label>
                         <input
                           type={field.type}
                           required={!!field.obligatoire}
@@ -204,73 +236,6 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                   }
                   return null;
                 })}
-
-                {/* Contact Info & Preference (email/tel) */}
-                <div className="bg-brand-cream/30 p-6 rounded-xl space-y-4">
-                  <label className="block text-sm font-bold text-brand-green uppercase tracking-wide">
-                    Vos coordonnées
-                  </label>
-                  <div>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Votre Nom / Entreprise"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold outline-none"
-                      value={formData.nom || ''}
-                      onChange={(e) => handleInputChange('nom', e.target.value)}
-                    />
-                  </div>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <div className="flex-1">
-                      <label className="flex items-center gap-2 text-xs text-brand-brown mb-2 font-medium cursor-pointer">
-                        <input
-                          type="radio"
-                          name="contactMethod"
-                          checked={contactMethod === 'email'}
-                          onChange={() => setContactMethod('email')}
-                          className="accent-brand-gold"
-                        />
-                        Par Email
-                      </label>
-                      <input
-                        type="email"
-                        required={contactMethod === 'email'}
-                        placeholder="email@exemple.com"
-                        className={`w-full px-4 py-3 rounded-lg border focus:ring-1 outline-none transition-colors ${
-                          contactMethod === 'email'
-                            ? 'border-brand-green bg-white ring-brand-green'
-                            : 'border-gray-200 bg-gray-50'
-                        }`}
-                        value={formData.email || ''}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <label className="flex items-center gap-2 text-xs text-brand-brown mb-2 font-medium cursor-pointer">
-                        <input
-                          type="radio"
-                          name="contactMethod"
-                          checked={contactMethod === 'phone'}
-                          onChange={() => setContactMethod('phone')}
-                          className="accent-brand-gold"
-                        />
-                        Par Téléphone
-                      </label>
-                      <input
-                        type="tel"
-                        required={contactMethod === 'phone'}
-                        placeholder="06 12 34 56 78"
-                        className={`w-full px-4 py-3 rounded-lg border focus:ring-1 outline-none transition-colors ${
-                          contactMethod === 'phone'
-                            ? 'border-brand-green bg-white ring-brand-green'
-                            : 'border-gray-200 bg-gray-50'
-                        }`}
-                        value={formData.telephone || ''}
-                        onChange={(e) => handleInputChange('telephone', e.target.value)}
-                      />
-                    </div>
-                  </div>
-                </div>
 
                 <button
                   type="submit"
