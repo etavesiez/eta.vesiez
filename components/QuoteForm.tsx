@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { Scrollbar } from 'react-scrollbars-custom';
+import { Scrollbar } from 'react-scrollbars-custom';
 import { Send, CheckCircle, X } from 'lucide-react';
 
 interface QuoteFormProps {
@@ -142,6 +142,15 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
 
         {fields.length > 0 ? (
           <div style={{ maxHeight: '90vh', width: '100%', borderRadius: '1rem', minHeight: 0, overflowY: 'auto' }} className="flex-1">
+            <Scrollbar
+            style={{ maxHeight: '90vh', minHeight: 800 }}
+            trackYProps={{ style: { background: 'transparent', width: 10, right: 0 } }}
+            thumbYProps={{
+              style: { background: '#4D3529', borderRadius: 6, width: 8, minHeight: 40, transition: 'background 0.2s' },
+              className: 'custom-scrollbar-thumb',
+            }}
+            trackXProps={{ style: { display: 'none' } }}
+            >
             <div className="p-8">
               {submitted ? (
                 <div className="text-center py-10">
@@ -204,7 +213,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                                   <div key={colIdx} className="flex flex-col gap-3 flex-1">
                                     {options.slice(colIdx * perCol, (colIdx + 1) * perCol).map((option: any) => {
                                       if (typeof option === 'object' && option !== null && option.label && Array.isArray(option.sousOptions)) {
-                                        const mainChecked = (formData[field.champ] || []).includes(option.label);
+                                        const mainChecked = ((formData[field.champ] as string[]) || []).includes(String(option.label));
                                         return (
                                           <div key={option.label} className="flex flex-col gap-1">
                                             <label className="flex items-center space-x-3 cursor-pointer group py-1">
@@ -222,7 +231,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                                                 const sousLabel = typeof sous === 'string' ? sous : sous.label;
                                                 const sousType = typeof sous === 'object' && sous.type ? sous.type : undefined;
                                                 const sousKey = `${option.label} - ${sousLabel}`;
-                                                const sousChecked = (formData[field.champ] || []).includes(sousKey);
+                                                const sousChecked = ((formData[field.champ] as string[]) || []).includes(String(sousKey));
                                                 return (
                                                   <label key={sousKey} className={`flex items-center space-x-3 cursor-pointer group ${!mainChecked ? 'opacity-50 pointer-events-none' : ''} py-1`}>
                                                     <input
@@ -254,7 +263,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                                           <input
                                             type="checkbox"
                                             className="accent-brand-gold h-5 w-5 cursor-pointer"
-                                            checked={(formData[field.champ] || []).includes(option)}
+                                            checked={((formData[field.champ] as string[]) || []).includes(String(option))}
                                             onChange={() => handleSelectChange(field.champ, option)}
                                           />
                                           <span className={`text-sm ${(formData[field.champ] || []).includes(option) ? 'text-brand-green font-semibold' : 'text-brand-brown'}`}>
@@ -356,8 +365,13 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                   </form>
                 </>
               )}
+              
             </div>
-          </div>
+            </Scrollbar>
+         </div>
+
+             
+         
         ) : (
           <div className="flex-1 flex items-center justify-center p-8">
             <span className="text-brand-brown/60">Chargement du formulaire…</span>
