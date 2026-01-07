@@ -1,6 +1,6 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-import { SocialIcon } from 'react-social-icons';
+// import { SocialIcon } from 'react-social-icons';
 
 const Contact: React.FC = () => {
   return (
@@ -81,41 +81,7 @@ const Contact: React.FC = () => {
             </a>
         </div>
 
-        <div className="text-center pt-8">
-          <h3 className="text-lg font-bold text-brand-green mb-4">Réseaux sociaux</h3>
-          <div className="flex items-center justify-center gap-4">
-            <SocialIcon
-              url="https://www.instagram.com/eta_vesiez"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ height: 36, width: 36 }}
-              className="hover:opacity-80"
-              aria-label="Instagram"
-            />
-
-            <SocialIcon
-              url="https://www.facebook.com/eta.vesiez"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ height: 36, width: 36 }}
-              className="hover:opacity-80"
-              aria-label="Facebook"
-            />
-
-            <SocialIcon
-              url="https://www.tiktok.com/@eta_vesiez"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ height: 36, width: 36 }}
-              className="hover:opacity-80"
-              aria-label="TikTok"
-            />
-
-            <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full text-sm text-gray-500 bg-white/50">
-              🔜 Page Google (bientôt)
-            </span>
-          </div>
-        </div>
+        {/* Réseaux sociaux déplacés dans le Footer */}
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { SocialIcon } from 'react-social-icons';
 
 const Footer: React.FC = () => {
   return (
@@ -15,6 +16,38 @@ const Footer: React.FC = () => {
         </div>
         <div className="text-xs opacity-50 text-center">
           © 2025 Louis Vésiez
+        </div>
+        <div className="flex flex-row items-center gap-4 mt-4">
+          <SocialIcon
+            url="https://www.instagram.com/eta_vesiez"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ height: 32, width: 32 }}
+            fgColor="#fff"
+            bgColor="transparent"
+            className="hover:opacity-80"
+            aria-label="Instagram"
+          />
+          <SocialIcon
+            url="https://www.facebook.com/eta.vesiez"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ height: 32, width: 32 }}
+            fgColor="#fff"
+            bgColor="transparent"
+            className="hover:opacity-80"
+            aria-label="Facebook"
+          />
+          <SocialIcon
+            url="https://www.tiktok.com/@eta_vesiez"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ height: 32, width: 32 }}
+            fgColor="#fff"
+            bgColor="transparent"
+            className="hover:opacity-80"
+            aria-label="TikTok"
+          />
         </div>
       </div>
     </footer>
