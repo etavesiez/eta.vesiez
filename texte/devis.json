@@ -17,7 +17,7 @@
     "champ": "telephone",
     "label": "Téléphone",
     "type": "tel",
-    "placeholder": "06 12 34 56 78",
+    "placeholder": "XX XX XX XX XX",
     "obligatoire": false
   },
   {
