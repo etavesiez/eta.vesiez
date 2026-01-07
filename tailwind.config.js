@@ -8,11 +8,12 @@ export default {
     extend: {
       colors: {
         brand: {
-          brown: '#4E3629',
-          gold: '#E1AD01',
-          green: '#2E4A31',
-          cream: '#F8F5E1',
+          green: '#2E4A31', // Vert foncé
+          gold: '#E1AD01',  // Or
+          brown: '#4D3529', // Marron foncé
+          cream: '#F7F4E0', // Crème clair
         }
+      }
       },
       fontFamily: {
         sans: ['Avenir Next', 'Inter', 'sans-serif'],

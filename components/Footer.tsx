@@ -4,6 +4,7 @@ import footerData from '../public/texte/footer.json';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import { X } from 'lucide-react';
 import { Scrollbar } from 'react-scrollbars-custom';
+import './FooterScrollbar.css';
 import mentionsData from '../public/texte/mentions-legales.json';
 
 const Footer: React.FC = () => {
@@ -106,7 +107,15 @@ const Footer: React.FC = () => {
               <DialogHeader>
                 <DialogTitle className="text-brand-green text-3xl mb-6 text-center tracking-tight font-block">{mentionsData.mentions_label}</DialogTitle>
               </DialogHeader>
-                  <Scrollbar style={{ maxHeight: '100vh', minHeight: 350 }}>
+                  <Scrollbar
+                    style={{ maxHeight: '100vh', minHeight: 350 }}
+                    trackYProps={{ style: { background: 'transparent', width: 10, right: 0 } }}
+                    thumbYProps={{
+                      style: { background: '#5B4636', borderRadius: 6, width: 8, minHeight: 40, transition: 'background 0.2s' },
+                      className: 'custom-scrollbar-thumb',
+                    }}
+                    trackXProps={{ style: { display: 'none' } }}
+                  >
                     <div className="prose prose-lg max-w-none text-brand-brown leading-relaxed space-y-6 pr-6">
                   {mentionsData.contenu.map((item: { titre?: string, texte: string }, idx: number) => {
                     if (item.titre === 'Adresse :') {

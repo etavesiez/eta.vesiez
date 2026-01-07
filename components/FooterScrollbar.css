@@ -1,0 +1,11 @@
+/* Personnalisation du thumb de la scrollbar Mentions légales */
+.custom-scrollbar-thumb {
+  background: #2E4A31 !important;
+  transition: background 0.2s;
+}
+.custom-scrollbar-thumb:hover,
+.custom-scrollbar-thumb.ScrollbarsCustom-ThumbYActive,
+.custom-scrollbar-thumb.ScrollbarsCustom-ThumbY:active,
+.custom-scrollbar-thumb.dragging {
+  background: #E1AD01 !important;
+}
