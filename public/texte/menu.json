@@ -1,0 +1,7 @@
+[
+  { "label": "Accueil", "id": "HOME" },
+  { "label": "Services", "id": "SERVICES" },
+  { "label": "À Propos", "id": "ABOUT" },
+  { "label": "Tarifs", "id": "PRICING" },
+  { "label": "Contact", "id": "CONTACT" }
+]
