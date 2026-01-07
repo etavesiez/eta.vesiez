@@ -3,6 +3,29 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 // import { SocialIcon } from 'react-social-icons';
 
 const Contact: React.FC = () => {
+
+  // Message dynamique pour les horaires
+const HorairesMessage: React.FC = () => {
+  const now = new Date();
+  const day = now.getDay(); // 0 = dimanche, 1 = lundi, ...
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  // Horaires d'ouverture : 8h-19h, lundi-samedi
+  const isOpen = day >= 1 && day <= 6 && hour >= 8 && hour < 19;
+  let message = "";
+  if (isOpen) {
+    message = `Je suis disponible, appelez-moi maintenant !`;
+  } else if (day === 0 || hour >= 19) {
+    message = `Vous pourrez m'appeler demain à partir de 8h00.`;
+  } else if (hour < 8) {
+    const minutesToOpen = (8 - hour) * 60 - minute;
+    const h = Math.floor(minutesToOpen / 60);
+    const m = minutesToOpen % 60;
+    message = `Vous pourrez m'appeler dans ${h > 0 ? h + 'h ' : ''}${m} minutes.`;
+  }
+  return <div className="text-brand-gold text-sm mb-1 font-semibold">{message}</div>;
+};
+
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -23,14 +46,13 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-brand-green mb-2">Adresse</h3>
-                  <p className="text-brand-brown">10 Rue Wallon<br/>80600 Lucheux</p>
-                  <a 
-                    href="https://www.google.com/maps/search/?api=1&query=10+Rue+Wallon+80600+Lucheux" 
-                    target="_blank" 
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=10+Rue+Wallon+80600+Lucheux"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block mt-3 text-sm font-bold text-brand-gold hover:underline"
+                    className="text-brand-brown hover:text-brand-gold font-bold block text-base transition-colors underline"
                   >
-                    Voir sur la carte
+                    10 Rue Wallon<br />80600 Lucheux
                   </a>
                 </div>
             </div>
@@ -41,7 +63,12 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-brand-green mb-2">Téléphone</h3>
-                  <p className="text-brand-brown font-lg font-bold">+33 7 69 65 14 30</p>
+                  <a
+                    href="tel:+33769651430"
+                    className="text-brand-brown hover:text-brand-gold font-bold text-base transition-colors underline"
+                  >
+                    +33 7 69 65 14 30
+                  </a>
                 </div>
             </div>
 
@@ -51,7 +78,10 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-brand-green mb-2">Email</h3>
-                  <a href="mailto:eta-vesiez@gmail.com" className="text-brand-brown hover:text-brand-gold transition-colors break-all">
+                  <a
+                    href="mailto:eta-vesiez@gmail.com"
+                    className="text-brand-brown hover:text-brand-gold font-bold text-base transition-colors underline break-all"
+                  >
                     eta-vesiez@gmail.com
                   </a>
                 </div>
@@ -63,11 +93,11 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-brand-green mb-2">Horaires</h3>
+                  <HorairesMessage />
                   <p className="text-brand-brown">Lundi - Samedi</p>
                   <p className="text-brand-brown font-bold">8h00 - 19h00</p>
                 </div>
             </div>
-
         </div>
 
         <div className="text-center pt-16">
