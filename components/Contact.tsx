@@ -109,13 +109,13 @@ const HorairesMessage: React.FC = () => {
 
         <div className="text-center pt-16">
             <a 
-              href="https://www.google.com/maps" 
+              href={contactData.google_avis_lien}
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 text-brand-brown font-bold text-lg group hover:text-brand-gold transition-colors"
             >
               <SocialIcon
-                url="https://www.google.com/maps"
+                url={contactData.google_avis_lien}
                 network="google"
                 style={{ height: 40, width: 40 }}
                 fgColor="currentColor"

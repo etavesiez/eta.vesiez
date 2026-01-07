@@ -1,5 +1,6 @@
 import React from 'react';
 import { SocialIcon } from 'react-social-icons';
+import footerData from '../public/texte/footer.json';
 
 const Footer: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const Footer: React.FC = () => {
           <span className="uppercase tracking-widest text-brand-gold font-block text-lg mb-2">Réseaux sociaux</span>
           <div className="flex flex-row items-center gap-6 font-sans">
             <SocialIcon
-              url="https://www.instagram.com/eta_vesiez"
+              url={footerData.instagram}
               target="_blank"
               rel="noopener noreferrer"
               style={{ height: 44, width: 44 }}
@@ -25,7 +26,7 @@ const Footer: React.FC = () => {
               aria-label="Instagram"
             />
             <SocialIcon
-              url="https://www.facebook.com/eta.vesiez"
+              url={footerData.facebook}
               target="_blank"
               rel="noopener noreferrer"
               style={{ height: 44, width: 44 }}
@@ -35,7 +36,7 @@ const Footer: React.FC = () => {
               aria-label="Facebook"
             />
             <SocialIcon
-              url="https://www.tiktok.com/@eta_vesiez"
+              url={footerData.tiktok}
               target="_blank"
               rel="noopener noreferrer"
               style={{ height: 44, width: 44 }}
@@ -47,10 +48,10 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10 mb-2">
-          <a href="#" className="hover:text-white transition-colors text-sm opacity-80">Mentions Légales</a>
+          <a href={footerData.mentions_lien} className="hover:text-white transition-colors text-sm opacity-80">{footerData.mentions}</a>
         </div>
         <div className="text-xs opacity-50 text-center">
-          © 2025 Louis Vésiez
+          {footerData.texte}
         </div>
       </div>
     </footer>
