@@ -107,7 +107,9 @@ const HorairesMessage: React.FC = () => {
             </div>
         </div>
 
-        <div className="text-center pt-16">
+        <div className="flex justify-center pt-16">
+          <div className="bg-white border border-brand-gold rounded-2xl px-8 py-6 flex flex-col items-center gap-3 max-w-md w-full">
+            <span className="text-brand-gold font-block text-lg mb-2">{contactData.google_avis_titre}</span>
             <a 
               href={contactData.google_avis_lien}
               target="_blank" 
@@ -125,6 +127,7 @@ const HorairesMessage: React.FC = () => {
               />
               <span className="align-middle">{contactData.bouton_google}</span>
             </a>
+          </div>
         </div>
 
         {/* Réseaux sociaux déplacés dans le Footer */}

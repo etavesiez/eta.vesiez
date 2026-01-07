@@ -9,5 +9,6 @@
   "email_lien": "mailto:eta-vesiez@gmail.com",
   "horaires_jours": "Lundi - Samedi",
   "horaires_heures": "8h00 - 19h00",
-  "google_avis_lien": "https://www.google.com/maps/place/ETA+Vesiez/@50.183,2.343,17z/data=!4m7!3m6!1s0x0:0x0!8m2!3d50.183!4d2.343!9m1!1b1"
+  "google_avis_lien": "https://www.google.com/maps/place/ETA+Vesiez/@50.183,2.343,17z/data=!4m7!3m6!1s0x0:0x0!8m2!3d50.183!4d2.343!9m1!1b1",
+  "google_avis_titre": "Votre avis compte !"
 }
