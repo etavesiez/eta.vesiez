@@ -7,11 +7,11 @@ interface PricingProps {
 }
 
 const Pricing: React.FC<PricingProps> = ({ openQuoteModal }) => {
-  const prices: PriceItem[] = [
-    { service: "Plantation Pomme de Terre", unit: "Hectare", price: "Sur Devis" },
-    { service: "Arrachage Pomme de Terre", unit: "Hectare", price: "Sur Devis" },
-    { service: "Location Manuscopic + Chauffeur", unit: "Heure / Journée", price: "Me contacter" },
-    { service: "Location Benne", unit: "Forfait", price: "Selon distance" },
+  const prices = [
+    { service: "Plantation Pomme de Terre", unit: "Hectare" },
+    { service: "Arrachage Pomme de Terre", unit: "Hectare" },
+    { service: "Location Manuscopic + Chauffeur", unit: "Heure / Journée" },
+    { service: "Location Benne", unit: "Forfait" },
   ];
 
   return (
@@ -20,7 +20,7 @@ const Pricing: React.FC<PricingProps> = ({ openQuoteModal }) => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-block font-bold text-brand-green mb-4">Tarifs</h2>
           <div className="h-1 w-20 bg-brand-gold mx-auto rounded-full"></div>
-          <div className="text-brand-brown/70 text-lg mb-4 mt-4">Une tarification claire et adaptée à vos chantiers.</div>
+          <div className="text-brand-brown/70 text-lg mb-4 mt-4">Pour assurer un tarif adapté à chaque chantier, toutes nos prestations sont uniquement sur devis personnalisé.</div>
         </div>
 
         <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
@@ -29,7 +29,6 @@ const Pricing: React.FC<PricingProps> = ({ openQuoteModal }) => {
               <tr>
                 <th className="p-6 font-block text-lg">Prestation</th>
                 <th className="p-6 font-block text-lg hidden sm:table-cell">Unité</th>
-                <th className="p-6 font-block text-lg text-right">Prix</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-brand-cream">
@@ -37,7 +36,6 @@ const Pricing: React.FC<PricingProps> = ({ openQuoteModal }) => {
                 <tr key={index} className="hover:bg-gray-50 transition-colors">
                   <td className="p-6 text-brand-brown font-medium">{item.service}</td>
                   <td className="p-6 text-gray-500 hidden sm:table-cell">{item.unit}</td>
-                  <td className="p-6 text-right font-bold text-brand-green">{item.price}</td>
                 </tr>
               ))}
             </tbody>
