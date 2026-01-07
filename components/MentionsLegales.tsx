@@ -1,4 +1,6 @@
 
+
+import { useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Scrollbar } from 'react-scrollbars-custom';
 import './FooterScrollbar.css';
@@ -10,9 +12,21 @@ interface MentionsLegalesProps {
 }
 
 const MentionsLegales: React.FC<MentionsLegalesProps> = ({ isOpen, onClose }) => {
+  // Empêche le scroll du body quand le modal est ouvert
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p7-4 sm:p-8">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-brand-green/60 backdrop-blur-sm transition-opacity"
