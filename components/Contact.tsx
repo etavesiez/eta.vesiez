@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGoogle } from 'react-icons/fa';
+import { SocialIcon } from 'react-social-icons';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 // import { SocialIcon } from 'react-social-icons';
 
@@ -106,9 +106,17 @@ const HorairesMessage: React.FC = () => {
               href="https://www.google.com/maps" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-brand-green font-bold border-b-2 border-brand-green hover:text-brand-gold hover:border-brand-gold transition-colors pb-1 text-lg"
+              className="inline-flex items-center gap-2 text-brand-brown font-bold border-b-2 border-brand-brown hover:text-brand-gold hover:border-brand-gold transition-colors pb-1 text-lg group"
             >
-              <FaGoogle className="h-6 w-6 inline-block" aria-label="Google logo" />
+              <SocialIcon
+                url="https://www.google.com/maps"
+                network="google"
+                style={{ height: 28, width: 28 }}
+                fgColor="currentColor"
+                bgColor="transparent"
+                className="inline-block align-middle "
+                aria-label="Google"
+              />
               Laisser un avis sur Google
             </a>
         </div>
