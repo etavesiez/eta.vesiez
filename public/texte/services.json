@@ -1,38 +1,47 @@
 [
   {
     "title": "Plantation de pommes de terre",
-    "desc": "Plantation mécanisée et précise des pommes de terre pour un démarrage optimal."
+    "desc": "Plantation mécanisée et précise des pommes de terre pour un démarrage optimal.",
+    "icon": "Sprout"
   },
   {
     "title": "Arrachage de pommes de terre",
-    "desc": "Arrachage, tri et préparation à la livraison de vos pommes de terre."
+    "desc": "Arrachage, tri et préparation à la livraison de vos pommes de terre.",
+    "icon": "Tractor"
   },
   {
     "title": "Moisson",
-    "desc": "Moisson rapide et soignée de vos céréales avec matériel adapté."
+    "desc": "Moisson rapide et soignée de vos céréales avec matériel adapté.",
+    "icon": "Tractor"
   },
   {
     "title": "Semis en ligne",
-    "desc": "Semis de précision en ligne pour une répartition homogène des cultures."
+    "desc": "Semis de précision en ligne pour une répartition homogène des cultures.",
+    "icon": "Sprout"
   },
   {
     "title": "Débroussaillage",
-    "desc": "Entretien et nettoyage mécanique des parcelles (débroussaillage)."
+    "desc": "Entretien et nettoyage mécanique des parcelles (débroussaillage).",
+    "icon": "Hammer"
   },
   {
     "title": "Travail du sol",
-    "desc": "Labour, hersage et préparation des parcelles avant semis."
+    "desc": "Labour, hersage et préparation des parcelles avant semis.",
+    "icon": "Tractor"
   },
   {
     "title": "Préparation du sol",
-    "desc": "Préparations fines du lit de semence pour assurer une bonne levée."
+    "desc": "Préparations fines du lit de semence pour assurer une bonne levée.",
+    "icon": "Sprout"
   },
   {
     "title": "Tassage de silo",
-    "desc": "Tassage et compactage de silo pour optimiser le stockage et la conservation."
+    "desc": "Tassage et compactage de silo pour optimiser le stockage et la conservation.",
+    "icon": "Hammer"
   },
   {
     "title": "Pressage de balles rondes",
-    "desc": "Pressage et mise en balles rondes pour stockage et transport."
+    "desc": "Pressage et mise en balles rondes pour stockage et transport.",
+    "icon": "Truck"
   }
 ]

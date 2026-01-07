@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Sprout, Truck, Hammer, Tractor, ChevronLeft, ChevronRight } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import servicesData from '../public/texte/services.json';
 
 // Import automatique de toutes les images depuis public/images/**/
@@ -82,23 +83,11 @@ const Services: React.FC = () => {
     startTimer();
   };
 
-  // Association titre → icône
-  const iconMap: Record<string, React.ElementType> = {
-    'Plantation de pommes de terre': Sprout,
-    'Arrachage de pommes de terre': Tractor,
-    'Moisson': Tractor,
-    'Semis en ligne': Sprout,
-    'Débroussaillage': Hammer,
-    'Travail du sol': Tractor,
-    'Préparation du sol': Sprout,
-    'Tassage de silo': Hammer,
-    'Pressage de balles rondes': Truck,
-  };
-
-  const services = (servicesData as Array<{ title: string; desc: string }>).map((item) => ({
-    ...item,
-    icon: iconMap[item.title] || Sprout,
-  }));
+  // Associe dynamiquement l'icône Lucide à partir du nom dans le JSON
+  const services = (servicesData as Array<{ title: string; desc: string; icon?: string }>).map((item) => {
+    const Icon = (item.icon && (LucideIcons as any)[item.icon]) || LucideIcons.Sprout;
+    return { ...item, Icon };
+  });
 
   return (
     <section className="py-24 bg-brand-cream">
@@ -171,7 +160,7 @@ const Services: React.FC = () => {
           {services.map((service, index) => (
             <div key={index} className="bg-white p-8 rounded-2xl border-none transition-transform hover:-translate-y-1">
               <div className="w-16 h-16 rounded-full bg-brand-cream flex items-center justify-center mb-6 text-brand-green">
-                <service.icon className="h-8 w-8" />
+                <service.Icon className="h-8 w-8" />
               </div>
               <h3 className="text-xl font-block font-bold text-brand-green mb-3">{service.title}</h3>
               <p className="text-brand-brown/80 leading-relaxed">
