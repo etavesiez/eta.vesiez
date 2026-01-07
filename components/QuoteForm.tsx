@@ -194,59 +194,67 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                             <label className="block text-sm font-block font-bold text-brand-green mb-3 uppercase tracking-wide">
                               {field.label}
                             </label>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-8 items-start">
-                              {field.options.map((option: any) => {
-                                // Si l'option est un objet avec sous-options
-                                if (typeof option === 'object' && option !== null && option.label && Array.isArray(option.sousOptions)) {
-                                  const mainChecked = (formData[field.champ] || []).includes(option.label);
-                                  return (
-                                    <div key={option.label} className="flex flex-col gap-1">
-                                      <label className="flex items-center space-x-3 cursor-pointer group py-1">
-                                        <input
-                                          type="checkbox"
-                                          className="accent-brand-gold h-5 w-5 cursor-pointer"
-                                          checked={mainChecked}
-                                          onChange={() => handleSelectChange(field.champ, option.label)}
-                                        />
-                                        <span className={`text-sm ${mainChecked ? 'text-brand-green font-semibold' : 'text-brand-brown'}`}>{option.label}</span>
-                                      </label>
-                                      {/* Sous-options toujours affichées, mais grisées si non cochées */}
-                                      <div className="ml-6 flex flex-col gap-1">
-                                        {option.sousOptions.map((sous: string) => {
-                                          const sousKey = `${option.label} - ${sous}`;
-                                          const sousChecked = (formData[field.champ] || []).includes(sousKey);
-                                          return (
-                                            <label key={sousKey} className={`flex items-center space-x-3 cursor-pointer group ${!mainChecked ? 'opacity-50 pointer-events-none' : ''} py-1`}>
+                            <div className="flex flex-col sm:flex-row gap-x-8">
+                              {/* Découpe les options en deux colonnes égales */}
+                              {(() => {
+                                const colCount = 2;
+                                const options = field.options;
+                                const perCol = Math.ceil(options.length / colCount);
+                                return Array.from({ length: colCount }).map((_, colIdx) => (
+                                  <div key={colIdx} className="flex flex-col gap-3 flex-1">
+                                    {options.slice(colIdx * perCol, (colIdx + 1) * perCol).map((option: any) => {
+                                      if (typeof option === 'object' && option !== null && option.label && Array.isArray(option.sousOptions)) {
+                                        const mainChecked = (formData[field.champ] || []).includes(option.label);
+                                        return (
+                                          <div key={option.label} className="flex flex-col gap-1">
+                                            <label className="flex items-center space-x-3 cursor-pointer group py-1">
                                               <input
                                                 type="checkbox"
                                                 className="accent-brand-gold h-5 w-5 cursor-pointer"
-                                                checked={sousChecked}
-                                                disabled={!mainChecked}
-                                                onChange={() => handleSelectChange(field.champ, sousKey)}
+                                                checked={mainChecked}
+                                                onChange={() => handleSelectChange(field.champ, option.label)}
                                               />
-                                              <span className={`text-xs ${sousChecked ? 'text-brand-green font-semibold' : 'text-brand-brown'}`}>{sous}</span>
+                                              <span className={`text-sm ${mainChecked ? 'text-brand-green font-semibold' : 'text-brand-brown'}`}>{option.label}</span>
                                             </label>
-                                          );
-                                        })}
-                                      </div>
-                                    </div>
-                                  );
-                                }
-                                // Option simple (string)
-                                return (
-                                  <label key={typeof option === 'string' ? option : ''} className="flex items-center space-x-3 cursor-pointer group py-1">
-                                    <input
-                                      type="checkbox"
-                                      className="accent-brand-gold h-5 w-5 cursor-pointer"
-                                      checked={(formData[field.champ] || []).includes(option)}
-                                      onChange={() => handleSelectChange(field.champ, option)}
-                                    />
-                                    <span className={`text-sm ${(formData[field.champ] || []).includes(option) ? 'text-brand-green font-semibold' : 'text-brand-brown'}`}>
-                                      {typeof option === 'string' ? option : ''}
-                                    </span>
-                                  </label>
-                                );
-                              })}
+                                            <div className="ml-6 flex flex-col gap-1">
+                                              {option.sousOptions.map((sous: string) => {
+                                                const sousKey = `${option.label} - ${sous}`;
+                                                const sousChecked = (formData[field.champ] || []).includes(sousKey);
+                                                return (
+                                                  <label key={sousKey} className={`flex items-center space-x-3 cursor-pointer group ${!mainChecked ? 'opacity-50 pointer-events-none' : ''} py-1`}>
+                                                    <input
+                                                      type="checkbox"
+                                                      className="accent-brand-gold h-5 w-5 cursor-pointer"
+                                                      checked={sousChecked}
+                                                      disabled={!mainChecked}
+                                                      onChange={() => handleSelectChange(field.champ, sousKey)}
+                                                    />
+                                                    <span className={`text-xs ${sousChecked ? 'text-brand-green font-semibold' : 'text-brand-brown'}`}>{sous}</span>
+                                                  </label>
+                                                );
+                                              })}
+                                            </div>
+                                          </div>
+                                        );
+                                      }
+                                      // Option simple (string)
+                                      return (
+                                        <label key={typeof option === 'string' ? option : ''} className="flex items-center space-x-3 cursor-pointer group py-1">
+                                          <input
+                                            type="checkbox"
+                                            className="accent-brand-gold h-5 w-5 cursor-pointer"
+                                            checked={(formData[field.champ] || []).includes(option)}
+                                            onChange={() => handleSelectChange(field.champ, option)}
+                                          />
+                                          <span className={`text-sm ${(formData[field.champ] || []).includes(option) ? 'text-brand-green font-semibold' : 'text-brand-brown'}`}>
+                                            {typeof option === 'string' ? option : ''}
+                                          </span>
+                                        </label>
+                                      );
+                                    })}
+                                  </div>
+                                ));
+                              })()}
                             </div>
                           </div>
                         );
