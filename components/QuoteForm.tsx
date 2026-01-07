@@ -194,7 +194,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                             <label className="block text-sm font-block font-bold text-brand-green mb-3 uppercase tracking-wide">
                               {field.label}
                             </label>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-8 items-start">
                               {field.options.map((option: any) => {
                                 // Si l'option est un objet avec sous-options
                                 if (typeof option === 'object' && option !== null && option.label && Array.isArray(option.sousOptions)) {
@@ -204,7 +204,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                                       <label className="flex items-center space-x-3 cursor-pointer group py-1">
                                         <input
                                           type="checkbox"
-                                          className="accent-brand-gold h-5 w-5"
+                                          className="accent-brand-gold h-5 w-5 cursor-pointer"
                                           checked={mainChecked}
                                           onChange={() => handleSelectChange(field.champ, option.label)}
                                         />
@@ -219,7 +219,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                                             <label key={sousKey} className={`flex items-center space-x-3 cursor-pointer group ${!mainChecked ? 'opacity-50 pointer-events-none' : ''} py-1`}>
                                               <input
                                                 type="checkbox"
-                                                className="accent-brand-gold h-5 w-5"
+                                                className="accent-brand-gold h-5 w-5 cursor-pointer"
                                                 checked={sousChecked}
                                                 disabled={!mainChecked}
                                                 onChange={() => handleSelectChange(field.champ, sousKey)}
@@ -237,7 +237,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                                   <label key={typeof option === 'string' ? option : ''} className="flex items-center space-x-3 cursor-pointer group py-1">
                                     <input
                                       type="checkbox"
-                                      className="accent-brand-gold h-5 w-5"
+                                      className="accent-brand-gold h-5 w-5 cursor-pointer"
                                       checked={(formData[field.champ] || []).includes(option)}
                                       onChange={() => handleSelectChange(field.champ, option)}
                                     />
