@@ -2,19 +2,19 @@
   {
     "title": "Plantation de pommes de terre 90cm",
     "desc": "Grâce à la fraise/planteuse BASELIER, le travail s’effectue en un seul passage, ce qui permet de minimiser les coûts, de garantir la qualité de la plantation avec une précision optimale et un tassage minimal.",
-    "icon": "columns-4",
+    "icon": "Columns4",
     "unite": "Hectare+heure"
   },
   {
     "title": "Arrachage",
     "desc": "Arrachage, de vos culture en planche/bute (plus d'information à venir).",
-    "icon": "upload",
+    "icon": "Upload",
     "unite": "Hectare"
   },
   {
     "title": "Moisson",
     "desc": "Batteuse à secoueurs afin de préserver une bonne qualité de paille tout en protégeant le grain, avec un débit élevé grâce à une largeur de coupe de 7,62 m.",
-    "icon": "wheat",
+    "icon": "Wheat",
     "unite": "Hectare"
   },
   {
@@ -26,7 +26,7 @@
   {
     "title": "Epareuse",
     "desc": "Entretien et nettoyage mécanique des parcelles et bordures (débroussaillage).",
-    "icon": "tree-deciduous",
+    "icon": "TreeDeciduous",
     "unite": "Heure"
   },
   {
@@ -50,7 +50,7 @@
   {
     "title": "Pressage de balles rondes",
     "desc": "Pressage et mise en balles.",
-    "icon": "diameter",
+    "icon": "Diameter",
     "unite": "Balle"
   }
 ]
