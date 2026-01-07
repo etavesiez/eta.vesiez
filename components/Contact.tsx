@@ -2,6 +2,7 @@ import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import menuData from '../public/texte/menu.json';
+import contactData from '../public/texte/contact.json';
 // import { SocialIcon } from 'react-social-icons';
 
 const Contact: React.FC = () => {
@@ -39,7 +40,7 @@ const HorairesMessage: React.FC = () => {
           </h2>
           <div className="h-1 w-20 bg-brand-gold mx-auto rounded-full"></div>
           <div className="text-brand-brown/70 text-lg mb-4 max-w-2xl mx-auto font-sans mt-4">
-            Besoin d'un renseignement direct ? Je suis à votre écoute.
+            {contactData.explication}
           </div>
         </div>
 
@@ -52,12 +53,12 @@ const HorairesMessage: React.FC = () => {
                 <div>
                   <h3 className="font-block text-xl font-bold text-brand-green mb-2">Adresse</h3>
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=10+Rue+Wallon+80600+Lucheux"
+                    href={contactData.adresse_lien}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-brand-brown hover:text-brand-gold font-bold block text-base transition-colors underline"
                   >
-                    10 Rue Wallon<br />80600 Lucheux
+                    {contactData.adresse}
                   </a>
                 </div>
             </div>
@@ -69,10 +70,10 @@ const HorairesMessage: React.FC = () => {
                 <div>
                   <h3 className="font-block text-xl font-bold text-brand-green mb-2">Téléphone</h3>
                   <a
-                    href="tel:+33769651430"
+                    href={contactData.telephone_lien}
                     className="text-brand-brown hover:text-brand-gold font-bold text-base transition-colors underline"
                   >
-                    +33 7 69 65 14 30
+                    {contactData.telephone}
                   </a>
                 </div>
             </div>
@@ -84,10 +85,10 @@ const HorairesMessage: React.FC = () => {
                 <div>
                   <h3 className="font-block text-xl font-bold text-brand-green mb-2">Email</h3>
                   <a
-                    href="mailto:eta-vesiez@gmail.com"
+                    href={contactData.email_lien}
                     className="text-brand-brown hover:text-brand-gold font-bold text-base transition-colors underline break-all"
                   >
-                    eta-vesiez@gmail.com
+                    {contactData.email}
                   </a>
                 </div>
             </div>
@@ -98,9 +99,10 @@ const HorairesMessage: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-block text-xl font-bold text-brand-green mb-2">Horaires</h3>
+                  
+                  <p className="text-brand-brown font-sans">{contactData.horaires_jours}</p>
+                  <p className="text-brand-brown font-bold font-sans">{contactData.horaires_heures}</p>
                   <HorairesMessage />
-                  <p className="text-brand-brown font-sans">Lundi - Samedi</p>
-                  <p className="text-brand-brown font-bold font-sans">8h00 - 19h00</p>
                 </div>
             </div>
         </div>
@@ -121,7 +123,7 @@ const HorairesMessage: React.FC = () => {
                 className="inline-block align-middle "
                 aria-label="Google"
               />
-              <span className="align-middle">Laisser un avis sur Google</span>
+              <span className="align-middle">{contactData.bouton_google}</span>
             </a>
         </div>
 
