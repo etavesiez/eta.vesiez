@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Sprout, Truck, Hammer, Tractor, ChevronLeft, ChevronRight } from 'lucide-react';
+import servicesData from '../public/texte/services.json';
 
 // Import automatique de toutes les images depuis public/images/**/
 // Utiliser le chemin absolu depuis la racine du projet
@@ -81,53 +82,23 @@ const Services: React.FC = () => {
     startTimer();
   };
 
-  const services = [
-    {
-      title: "Plantation de pommes de terre",
-      desc: "Plantation mécanisée et précise des pommes de terre pour un démarrage optimal.",
-      icon: Sprout
-    },
-    {
-      title: "Arrachage de pommes de terre",
-      desc: "Arrachage, tri et préparation à la livraison de vos pommes de terre.",
-      icon: Tractor
-    },
-    {
-      title: "Moisson",
-      desc: "Moisson rapide et soignée de vos céréales avec matériel adapté.",
-      icon: Tractor
-    },
-    {
-      title: "Semis en ligne",
-      desc: "Semis de précision en ligne pour une répartition homogène des cultures.",
-      icon: Sprout
-    },
-    {
-      title: "Débroussaillage",
-      desc: "Entretien et nettoyage mécanique des parcelles (débroussaillage).",
-      icon: Hammer
-    },
-    {
-      title: "Travail du sol",
-      desc: "Labour, hersage et préparation des parcelles avant semis.",
-      icon: Tractor
-    },
-    {
-      title: "Préparation du sol",
-      desc: "Préparations fines du lit de semence pour assurer une bonne levée.",
-      icon: Sprout
-    },
-    {
-      title: "Tassage de silo",
-      desc: "Tassage et compactage de silo pour optimiser le stockage et la conservation.",
-      icon: Hammer
-    },
-    {
-      title: "Pressage de balles rondes",
-      desc: "Pressage et mise en balles rondes pour stockage et transport.",
-      icon: Truck
-    }
-  ];
+  // Association titre → icône
+  const iconMap: Record<string, React.ElementType> = {
+    'Plantation de pommes de terre': Sprout,
+    'Arrachage de pommes de terre': Tractor,
+    'Moisson': Tractor,
+    'Semis en ligne': Sprout,
+    'Débroussaillage': Hammer,
+    'Travail du sol': Tractor,
+    'Préparation du sol': Sprout,
+    'Tassage de silo': Hammer,
+    'Pressage de balles rondes': Truck,
+  };
+
+  const services = (servicesData as Array<{ title: string; desc: string }>).map((item) => ({
+    ...item,
+    icon: iconMap[item.title] || Sprout,
+  }));
 
   return (
     <section className="py-24 bg-brand-cream">
