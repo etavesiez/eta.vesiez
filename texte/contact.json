@@ -1,0 +1,12 @@
+{
+  "explication": "Besoin d'un renseignement direct ? Je suis à votre écoute.",
+  "bouton_google": "Laisser un avis sur Google",
+  "adresse": "10 Rue Wallon, 80600 Lucheux",
+  "adresse_lien": "https://www.google.com/maps/search/?api=1&query=10+Rue+Wallon+80600+Lucheux",
+  "telephone": "+33 7 69 65 14 30",
+  "telephone_lien": "tel:+33769651430",
+  "email": "eta-vesiez@gmail.com",
+  "email_lien": "mailto:eta-vesiez@gmail.com",
+  "horaires_jours": "Lundi - Samedi",
+  "horaires_heures": "8h00 - 19h00"
+}
