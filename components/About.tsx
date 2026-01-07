@@ -1,5 +1,6 @@
 import React from 'react';
 import menuData from '../public/texte/menu.json';
+import aproposData from '../public/texte/a-propos.json';
 
 const About: React.FC = () => {
   return (
@@ -26,24 +27,20 @@ const About: React.FC = () => {
                     
             <h4 className="text-brand-gold font-block uppercase tracking-widest text-sm mb-2">L'Entrepreneur</h4>
             
-            <div className="text-brand-brown/70 text-lg mb-8">Un service de proximité par Louis Vésiez</div>
+            <div className="text-brand-brown/70 text-lg mb-8">{aproposData.accroche}</div>
             
             <div className="space-y-6 text-brand-brown text-lg leading-relaxed">
-              <p>
-                <strong>ETA Vesiez</strong> est une Entreprise Individuelle (EI) fondée en décembre 2025. Je dirige seul cette structure pour offrir un service direct et sans intermédiaire.
-              </p>
-              <p>
-                Passionné par le machinisme et la culture de la pomme de terre, <strong>je me déplace sur le secteur des Hauts-de-France</strong> afin de vous offrir un travail avec soin et rigueur.
-              </p>
+              <p>{aproposData.paragraphe1}</p>
+              <p>{aproposData.paragraphe2}</p>
             </div>
 
             <div className="mt-8 pt-8 border-t border-brand-cream grid grid-cols-2 gap-8">
                <div>
-                  <span className="block text-3xl font-bold text-brand-gold mb-1">Lucheux</span>
+                  <span className="block text-3xl font-bold text-brand-gold mb-1">{aproposData.localisation}</span>
                   <span className="text-sm text-gray-500 font-sans">Localisation</span>
                </div>
                <div>
-                  <span className="block text-3xl font-bold text-brand-gold mb-1">EI</span>
+                  <span className="block text-3xl font-bold text-brand-gold mb-1">{aproposData.statut}</span>
                   <span className="text-sm text-gray-500 font-sans">Statut Juridique</span>
                </div>
             </div>
