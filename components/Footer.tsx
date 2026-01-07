@@ -2,6 +2,7 @@ import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 import footerData from '../public/texte/footer.json';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
+import { X } from 'lucide-react';
 import { Scrollbar } from 'react-scrollbars-custom';
 import mentionsData from '../public/texte/mentions-legales.json';
 
@@ -81,7 +82,7 @@ const Footer: React.FC = () => {
             )}
           </div>
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10 mb-2">
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10">
           <Dialog>
             <DialogTrigger asChild>
               <button
@@ -91,12 +92,22 @@ const Footer: React.FC = () => {
                 {footerData.mentions}
               </button>
             </DialogTrigger>
-            <DialogContent className="w-full max-w-3xl max-h-[100vh]">
+                <DialogContent className="w-full max-w-3xl max-h-[100vh]">
+                  {/* Bouton de fermeture explicite */}
+                  <button
+                    onClick={() => document.activeElement && (document.activeElement as HTMLElement).blur()}
+                    className="absolute top-4 right-4 p-2 bg-gray-100 rounded-full hover:bg-brand-gold hover:text-brand-brown transition-colors z-10"
+                    aria-label="Fermer"
+                    tabIndex={0}
+                    type="button"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
               <DialogHeader>
                 <DialogTitle className="text-brand-green text-3xl mb-6 text-center tracking-tight font-block">{mentionsData.mentions_label}</DialogTitle>
               </DialogHeader>
                   <Scrollbar style={{ maxHeight: '100vh', minHeight: 350 }}>
-                    <div className="prose prose-lg max-w-none text-brand-brown leading-relaxed space-y-6 pl-6">
+                    <div className="prose prose-lg max-w-none text-brand-brown leading-relaxed space-y-6 pr-6">
                   {mentionsData.contenu.map((item: { titre?: string, texte: string }, idx: number) => {
                     if (item.titre === 'Adresse :') {
                       return (
