@@ -25,7 +25,14 @@
     "label": "Prestation souhaitée",
     "type": "select",
     "options": [
-      "Plantation de pommes de terre 90cm",
+      {
+        "label": "Plantation de pommes de terre 90cm",
+        "sousOptions": [
+          "Tracteur + benne",
+          "Télescopique",
+          "Tracteur + herse rotative"
+        ]
+      },
       "Arrachage",
       "Moisson",
       "Semis en ligne",
