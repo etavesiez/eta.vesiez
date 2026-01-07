@@ -1,10 +1,13 @@
 import React from 'react';
+import menuData from '../public/texte/menu.json';
 
 const About: React.FC = () => {
   return (
     <section className="py-24 bg-white">
        <div className="text-center mb-16">
-        <h2 className="text-4xl font-block font-bold text-brand-green mb-4">À Propos</h2>
+        <h2 className="text-4xl font-block font-bold text-brand-green mb-4">
+          {menuData.find((item: { id: string }) => item.id === 'ABOUT')?.label || 'À Propos'}
+        </h2>
         <div className="h-1 w-20 bg-brand-gold mx-auto rounded-full"></div>
        </div>
       

@@ -1,5 +1,6 @@
 import React from 'react';
 import servicesData from '../public/texte/services.json';
+import menuData from '../public/texte/menu.json';
 import { FileText } from 'lucide-react';
 
 interface PricingProps {
@@ -16,7 +17,9 @@ const Pricing: React.FC<PricingProps> = ({ openQuoteModal }) => {
     <section className="py-24 bg-brand-cream">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-block font-bold text-brand-green mb-4">Tarifs</h2>
+          <h2 className="text-4xl font-block font-bold text-brand-green mb-4">
+            {menuData.find((item: { id: string }) => item.id === 'PRICING')?.label || 'Tarifs'}
+          </h2>
           <div className="h-1 w-20 bg-brand-gold mx-auto rounded-full"></div>
           <div className="text-brand-brown/70 text-lg mt-4">Pour assurer un tarif adapté à chaque chantier, toutes nos prestations sont uniquement sur devis personnalisé.</div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import menuData from '../public/texte/menu.json';
 // import { SocialIcon } from 'react-social-icons';
 
 const Contact: React.FC = () => {
@@ -33,7 +34,9 @@ const HorairesMessage: React.FC = () => {
         
         {/* Header Section */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-block font-bold text-brand-green mb-4">Contact</h2>
+          <h2 className="text-4xl font-block font-bold text-brand-green mb-4">
+            {menuData.find((item: { id: string }) => item.id === 'CONTACT')?.label || 'Contact'}
+          </h2>
           <div className="h-1 w-20 bg-brand-gold mx-auto rounded-full"></div>
           <div className="text-brand-brown/70 text-lg mb-4 max-w-2xl mx-auto font-sans mt-4">
             Besoin d'un renseignement direct ? Je suis à votre écoute.

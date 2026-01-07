@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import menuData from '../public/texte/menu.json';
 import { Menu, X, Tractor } from 'lucide-react';
 import { SectionId } from '../types';
 
@@ -19,13 +20,11 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, openQuoteModal }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
-    { label: 'Accueil', id: SectionId.HOME },
-    { label: 'Services', id: SectionId.SERVICES },
-    { label: 'À Propos', id: SectionId.ABOUT },
-    { label: 'Tarifs', id: SectionId.PRICING },
-    { label: 'Contact', id: SectionId.CONTACT },
-  ];
+  // On suppose que les ids du JSON correspondent à SectionId
+  const navItems = (menuData as Array<{ label: string; id: string }>).map(item => ({
+    label: item.label,
+    id: (SectionId as any)[item.id] || item.id
+  }));
 
   const handleNavClick = (id: SectionId) => {
     scrollToSection(id);
