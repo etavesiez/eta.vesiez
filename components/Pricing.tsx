@@ -1,5 +1,5 @@
 import React from 'react';
-import { PriceItem } from '../types';
+import servicesData from '../public/texte/services.json';
 import { FileText } from 'lucide-react';
 
 interface PricingProps {
@@ -7,12 +7,10 @@ interface PricingProps {
 }
 
 const Pricing: React.FC<PricingProps> = ({ openQuoteModal }) => {
-  const prices = [
-    { service: "Plantation Pomme de Terre", unit: "Hectare" },
-    { service: "Arrachage Pomme de Terre", unit: "Hectare" },
-    { service: "Location Manuscopic + Chauffeur", unit: "Heure / Journée" },
-    { service: "Location Benne", unit: "Forfait" },
-  ];
+  const prices = (servicesData as Array<{ title: string; unite?: string }> ).map(item => ({
+    service: item.title,
+    unit: item.unite || "-"
+  }));
 
   return (
     <section className="py-24 bg-brand-cream">
@@ -42,7 +40,7 @@ const Pricing: React.FC<PricingProps> = ({ openQuoteModal }) => {
           </table>
         </div>
         
-        <div className="mt-10 text-center">
+        <div className="mt-5 text-center">
              <button 
                onClick={openQuoteModal}
                className="inline-flex items-center gap-2 px-8 py-3 bg-brand-gold text-brand-brown font-bold rounded-full transition-colors hover:bg-opacity-90 shadow-lg"
