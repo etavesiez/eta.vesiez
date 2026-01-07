@@ -3,11 +3,11 @@
     "title": "Plantation de pommes de terre 90cm",
     "desc": "Grâce à la fraise/planteuse BASELIER, le travail s’effectue en un seul passage, ce qui permet de minimiser les coûts, de garantir la qualité de la plantation avec une précision optimale et un tassage minimal.",
     "icon": "Sprout",
-    "unite": "Hectare"
+    "unite": "Hectare+heure"
   },
   {
     "title": "Arrachage",
-    "desc": "Arrachage, de vos culture en planche/bute (plus d'information à venir.",
+    "desc": "Arrachage, de vos culture en planche/bute (plus d'information à venir).",
     "icon": "Tractor",
     "unite": "Hectare"
   },
@@ -45,7 +45,7 @@
     "title": "Tassage de silo",
     "desc": "Tassage et compactage de silo pour optimiser le stockage et la conservation.",
     "icon": "Hammer",
-    "unite": "Forfait"
+    "unite": "heure"
   },
   {
     "title": "Pressage de balles rondes",
