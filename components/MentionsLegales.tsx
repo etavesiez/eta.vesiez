@@ -43,14 +43,17 @@ const MentionsLegales: React.FC<MentionsLegalesProps> = ({ isOpen, onClose }) =>
           <X className="h-6 w-6" />
         </button>
         <Scrollbar
-            style={{ maxHeight: '100vh', minHeight: 800 }}
-            trackYProps={{ style: { background: 'transparent', width: 10, right: 0 } }}
-            thumbYProps={{
-              style: { background: '#4D3529', borderRadius: 6, width: 8, minHeight: 40, transition: 'background 0.2s' },
-              className: 'custom-scrollbar-thumb',
-            }}
-            trackXProps={{ style: { display: 'none' } }}
-          >
+          style={{
+            maxHeight: '100vh',
+            minHeight: typeof window !== 'undefined' && window.innerWidth < 640 ? 200 : typeof window !== 'undefined' && window.innerWidth < 768 ? 400 : typeof window !== 'undefined' && window.innerWidth < 1024 ? 600 : 800
+          }}
+          trackYProps={{ style: { background: 'transparent', width: 10, right: 0 } }}
+          thumbYProps={{
+            style: { background: '#4D3529', borderRadius: 6, width: 8, minHeight: 40, transition: 'background 0.2s' },
+            className: 'custom-scrollbar-thumb',
+          }}
+          trackXProps={{ style: { display: 'none' } }}
+        >
 
         <div className="pt-16 p-2 sm:p-4 md:p-6 lg:p-8">
           <h3 className="text-2xl sm:text-3xl font-block font-bold text-brand-green mb-4 sm:mb-6 text-center tracking-tight">{mentionsData.mentions_label}</h3>

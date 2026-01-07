@@ -143,15 +143,18 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
         {fields.length > 0 ? (
           <div style={{ maxHeight: '90vh', width: '100%', borderRadius: '1rem', minHeight: 0, overflowY: 'auto' }} className="flex-1">
             <Scrollbar
-            style={{ maxHeight: '90vh', minHeight: 800 }}
-            trackYProps={{ style: { background: 'transparent', width: 10, right: 0 } }}
-            thumbYProps={{
-              style: { background: '#4D3529', borderRadius: 6, width: 8, minHeight: 40, transition: 'background 0.2s' },
-              className: 'custom-scrollbar-thumb',
-            }}
-            trackXProps={{ style: { display: 'none' } }}
+              style={{
+                maxHeight: '90vh',
+                minHeight: window.innerWidth < 640 ? 200 : window.innerWidth < 768 ? 400 : window.innerWidth < 1024 ? 600 : 800
+              }}
+              trackYProps={{ style: { background: 'transparent', width: 10, right: 0 } }}
+              thumbYProps={{
+                style: { background: '#4D3529', borderRadius: 6, width: 8, minHeight: 40, transition: 'background 0.2s' },
+                className: 'custom-scrollbar-thumb',
+              }}
+              trackXProps={{ style: { display: 'none' } }}
             >
-            <div className="pt-16 p-8">
+              <div className="pt-16 p-8">
               {submitted ? (
                 <div className="text-center py-10">
                   <div className="w-20 h-20 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
