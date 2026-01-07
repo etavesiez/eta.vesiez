@@ -12,6 +12,7 @@
     { "titre": "Hébergeur :", "texte": "GitHub Pages (https://pages.github.com)" },
     { "titre": "Propriété intellectuelle :", "texte": "Les textes, images et contenus présents sur ce site sont la propriété exclusive de Louis Vésiez sauf mention contraire. Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable." },
     { "titre": "Protection des données personnelles :", "texte": "Les informations recueillies via le formulaire de contact sont enregistrées dans un fichier informatisé par Louis Vésiez pour la gestion des demandes. Elles sont conservées pendant 3 ans et sont destinées uniquement à un usage interne. Conformément à la loi « informatique et libertés » et au RGPD, vous pouvez exercer votre droit d’accès aux données vous concernant et les faire rectifier en contactant : eta-vesiez@gmail.com." },
-    { "texte": "Pour toute question ou signalement concernant le site, merci d’utiliser les coordonnées ci-dessus." }
+    { "texte": "Pour toute question ou signalement concernant le site, merci d’utiliser les coordonnées ci-dessus." },
+    { "titre": "Droits d'auteur et licences open source :", "texte": "Ce site utilise des logiciels open source sous licence MIT (React, Tailwind CSS, Lucide, Vite, etc.). Les droits d’auteur des dépendances sont listés dans le fichier LICENSES-THIRD-PARTY.txt à la racine du projet (voir : https://github.com/etavesiez/ETA-Vesiez/blob/main/LICENSES-THIRD-PARTY.txt). Toute reproduction ou réutilisation du code ou des contenus doit respecter ces licences et conserver les mentions de copyright d’origine." }
   ]
 }
