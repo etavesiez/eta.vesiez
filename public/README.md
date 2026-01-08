@@ -5,6 +5,7 @@
 
 ---
 
+
 ## 1. Modifier les prestations et les icônes (services)
 
 Le fichier principal est : `public/texte/services.json`
@@ -22,6 +23,8 @@ Chaque bloc correspond à une prestation :
 - `title` : le nom de la prestation (gros titre)
 - `desc` : la description (petit texte)
 - `icon` : le nom d'une icône Lucide (voir ci-dessous)
+
+> **Note** : Sur ce site, toutes les prestations sont réalisées par une seule personne (Louis Vésiez). Les textes et exemples sont donc à la première personne du singulier ("mes prestations", "je propose", etc.).
 
 
 ### Icônes Lucide : comment ça marche ?

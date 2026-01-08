@@ -21,10 +21,13 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, openQuoteModal }) => {
   }, []);
 
   // On suppose que les ids du JSON correspondent à SectionId
-  const navItems = (menuData as Array<{ label: string; id: string }>).map(item => ({
-    label: item.label,
-    id: (SectionId as any)[item.id] || item.id
-  }));
+  const navItems = (menuData as Array<{ label: string; id: string }>)
+    .filter(item => item.id !== 'DEVIS_BTN')
+    .map(item => ({
+      label: item.label,
+      id: (SectionId as any)[item.id] || item.id
+    }));
+  const devisBtn = (menuData as Array<{ label: string; id: string }>).find(item => item.id === 'DEVIS_BTN');
 
   const handleNavClick = (id: SectionId) => {
     scrollToSection(id);
@@ -63,17 +66,18 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, openQuoteModal }) => {
                 {item.label}
               </button>
             ))}
-            
-            <button
-              onClick={openQuoteModal}
-              className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${
-                scrolled
-                  ? 'bg-brand-green text-brand-cream hover:bg-brand-gold hover:text-brand-brown'
-                  : 'bg-brand-gold text-brand-brown hover:bg-brand-cream hover:text-brand-green'
-              }`}
-            >
-              Devis
-            </button>
+            {devisBtn && (
+              <button
+                onClick={openQuoteModal}
+                className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${
+                  scrolled
+                    ? 'bg-brand-green text-brand-cream hover:bg-brand-gold hover:text-brand-brown'
+                    : 'bg-brand-gold text-brand-brown hover:bg-brand-cream hover:text-brand-green'
+                }`}
+              >
+                {devisBtn.label}
+              </button>
+            )}
           </div>
           
           {/* Mobile Menu Button */}
@@ -105,15 +109,17 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection, openQuoteModal }) => {
                 {item.label}
               </button>
             ))}
-            <button
-              onClick={() => {
-                setIsOpen(false);
-                openQuoteModal();
-              }}
-              className="px-8 py-3 bg-brand-green text-brand-cream rounded-full text-xl font-bold hover:bg-brand-gold hover:text-brand-brown transition-colors"
-            >
-              Demander un Devis
-            </button>
+            {devisBtn && (
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  openQuoteModal();
+                }}
+                className="px-8 py-3 bg-brand-green text-brand-cream rounded-full text-xl font-bold hover:bg-brand-gold hover:text-brand-brown transition-colors"
+              >
+                {devisBtn.label}
+              </button>
+            )}
         </div>
       )}
     </nav>

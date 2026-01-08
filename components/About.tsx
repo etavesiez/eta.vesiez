@@ -25,7 +25,7 @@ const About: React.FC = () => {
           
           <div className="w-full lg:w-1/2">
                     
-            <h4 className="text-brand-gold font-block uppercase tracking-widest text-sm mb-2">L'Entrepreneur</h4>
+            <h4 className="text-brand-gold font-block uppercase tracking-widest text-sm mb-2">{aproposData.sous_titre}</h4>
             
             <div className="text-brand-brown/70 text-lg mb-8">{aproposData.accroche}</div>
             

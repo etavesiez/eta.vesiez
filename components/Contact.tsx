@@ -131,8 +131,6 @@ const HorairesMessage: React.FC = () => {
             </a>
           </div>
         </div>
-
-        {/* Réseaux sociaux déplacés dans le Footer */}
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import accueilData from '../public/texte/accueil.json';
 import { ChevronDown, ArrowRight, FileText } from 'lucide-react';
 import { SectionId } from '../types';
 
@@ -33,7 +34,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToSection, openQuoteModal }) => {
         />
         
         <p className="text-xl md:text-2xl text-brand-cream/90 font-light mb-12 max-w-2xl mx-auto leading-relaxed font-sans">
-          Prestation de service dans les haut de France
+          {accueilData.slogan}
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -41,7 +42,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToSection, openQuoteModal }) => {
             onClick={() => scrollToSection(SectionId.SERVICES)}
             className="bg-brand-gold text-brand-brown font-bold py-4 px-10 rounded-full transition-transform hover:scale-105 flex items-center gap-2"
           >
-            Nos Services
+            {accueilData.services_btn}
             <ArrowRight className="h-5 w-5" />
           </button>
           
@@ -50,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToSection, openQuoteModal }) => {
             className="px-10 py-4 rounded-full text-brand-cream border-2 border-brand-cream hover:bg-brand-cream hover:text-brand-green transition-all font-bold flex items-center gap-2"
           >
             <FileText className="h-5 w-5" />
-            Demander un devis
+            {accueilData.devis_btn}
           </button>
         </div>
       </div>

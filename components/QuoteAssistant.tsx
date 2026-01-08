@@ -32,7 +32,7 @@ const QuoteAssistant: React.FC = () => {
         <h3 className="text-lg font-block font-bold text-brand-green">Assistant de Rédaction Intelligent</h3>
       </div>
       <p className="text-sm text-gray-600 mb-4">
-        Décrivez votre besoin simplement (ex: "Je veux planter 10 hectares de patates semaine prochaine"), et notre assistant rédigera un email professionnel pour vous.
+        Décrivez votre besoin simplement (ex: "Je veux planter 10 hectares de patates semaine prochaine") et je vous renverrais un devis.
       </p>
       
       <div className="space-y-4">

@@ -192,10 +192,18 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                 </div>
               ) : (
                 <>
-                  <h3 className="text-2xl font-block font-bold text-brand-green mb-2 text-center">Demander un devis</h3>
-                  <p className="text-brand-brown/70 mb-8">
-                    Sélectionnez vos prestations et expliquez votre besoin. Je vous réponds rapidement.
-                  </p>
+
+                  {/* Texte d'en-tête et explication depuis devis.json (nouveau format) */}
+                  {(() => {
+                    const headerField = fields.find((f) => f.titre && f.explication);
+                    if (headerField) {
+                      return <>
+                        <h3 className="text-2xl font-block font-bold text-brand-green mb-2 text-center">{headerField.titre}</h3>
+                        <p className="text-brand-brown/70 mb-8">{headerField.explication}</p>
+                      </>;
+                    }
+                    return null;
+                  })()}
 
                   <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
                     {fields.map((field) => {

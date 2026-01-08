@@ -20,7 +20,7 @@ const Footer: React.FC<FooterProps> = ({ openMentionsModal }) => {
           style={{ maxWidth: 180 }}
         />
         <div className="flex flex-col items-center mb-6">
-          <span className="uppercase tracking-widest text-brand-gold font-block text-lg mb-2">Réseaux sociaux</span>
+          <span className="uppercase tracking-widest text-brand-gold font-block text-lg mb-2">{footerData.reseaux_titre}</span>
           <div className="flex flex-row items-center gap-6 font-sans">
             {footerData.instagram && (
               <SocialIcon
