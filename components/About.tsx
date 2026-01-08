@@ -17,7 +17,7 @@ const About: React.FC = () => {
           <div className="w-full lg:w-1/2 flex flex-col items-center gap-6">
      
             <img 
-              src="./images/a-propos.jpeg" 
+              src="./images/a-propos.jpg" 
               alt="A propos" 
               className="rounded-2xl w-full object-cover h-[320px]"
             />
