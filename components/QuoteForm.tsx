@@ -131,7 +131,10 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
       ></div>
 
       {/* Modal Content with custom Scrollbar */}
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] animate-in fade-in zoom-in duration-200 flex flex-col">
+      <div
+        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl animate-in fade-in zoom-in duration-200 flex flex-col overflow-hidden"
+        style={{ maxHeight: '90vh', height: '90vh' }}
+      >
         {/* Close Button */}
         <button 
           onClick={onClose}
@@ -141,12 +144,20 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
         </button>
 
         {fields.length > 0 ? (
-          <div style={{ maxWidth: '100%', borderRadius: '1rem' }}>
+          <div
+            style={{
+              maxWidth: '100%',
+              borderRadius: '1rem',
+              display: 'flex',
+              flexDirection: 'column',
+              minHeight: 0,
+              flex: 1,
+              height: '100%'
+            }}
+          >
             <Scrollbar
-              style={{
-                maxHeight: '90vh',
-                minHeight: window.innerWidth < 640 ? 600 : window.innerWidth < 768 ? 700 : 800
-              }}
+              style={{ flex: 1, minHeight: 0, height: '100%' }}
+              contentProps={{ style: { display: 'flex', flexDirection: 'column', minHeight: 0, height: '100%' } }}
               trackYProps={{ style: { background: 'transparent', width: 10, right: 0 } }}
               thumbYProps={{
                 style: { background: '#4D3529', borderRadius: 6, width: 8, minHeight: 40, transition: 'background 0.2s' },
@@ -154,7 +165,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
               }}
               trackXProps={{ style: { display: 'none' } }}
             >
-              <div className="pt-16 p-8">
+              <div className="pt-16 p-8 min-h-0 flex-1 flex flex-col">
               {submitted ? (
                 <div className="text-center py-10">
                   <div className="w-20 h-20 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
