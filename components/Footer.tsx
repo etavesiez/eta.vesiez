@@ -1,6 +1,7 @@
 import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 import footerData from '../public/texte/footer.json';
+import contactData from '../public/texte/contact.json';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import { X } from 'lucide-react';
 import { Scrollbar } from 'react-scrollbars-custom';
@@ -22,9 +23,9 @@ const Footer: React.FC<FooterProps> = ({ openMentionsModal }) => {
         <div className="flex flex-col items-center mb-6">
           <span className="uppercase tracking-widest text-brand-gold font-block text-lg mb-2">{footerData.reseaux_titre}</span>
           <div className="flex flex-row items-center gap-6 font-sans">
-            {footerData.instagram && (
+            {contactData.instagram && (
               <SocialIcon
-                url={footerData.instagram}
+                url={contactData.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ height: 44, width: 44 }}
@@ -34,9 +35,9 @@ const Footer: React.FC<FooterProps> = ({ openMentionsModal }) => {
                 aria-label="Instagram"
               />
             )}
-            {footerData.facebook && (
+            {contactData.facebook && (
               <SocialIcon
-                url={footerData.facebook}
+                url={contactData.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ height: 44, width: 44 }}
@@ -46,9 +47,9 @@ const Footer: React.FC<FooterProps> = ({ openMentionsModal }) => {
                 aria-label="Facebook"
               />
             )}
-            {footerData.tiktok && (
+            {contactData.tiktok && (
               <SocialIcon
-                url={footerData.tiktok}
+                url={contactData.tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ height: 44, width: 44 }}
@@ -58,9 +59,9 @@ const Footer: React.FC<FooterProps> = ({ openMentionsModal }) => {
                 aria-label="TikTok"
               />
             )}
-            {footerData.linkedin && (
+            {contactData.linkedin && (
               <SocialIcon
-                url={footerData.linkedin}
+                url={contactData.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ height: 44, width: 44 }}
@@ -70,9 +71,9 @@ const Footer: React.FC<FooterProps> = ({ openMentionsModal }) => {
                 aria-label="LinkedIn"
               />
             )}
-            {footerData.whatsapp && (
+            {contactData.whatsapp && (
               <SocialIcon
-                url={footerData.whatsapp}
+                url={contactData.whatsapp}
                 network="whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
