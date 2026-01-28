@@ -4,7 +4,7 @@
 
 Site vitrine de l’entreprise ETA Vésiez : présentation, services, contact, et demande de devis en ligne.
 
-https://etavesiez.github.io/ETA-Vesiez/
+https://etavesiez.github.io/eta.vesiez/
 
 ---
 
