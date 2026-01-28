@@ -9,6 +9,7 @@ interface QuoteFormProps {
 
 const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [contactMethod, setContactMethod] = useState<'email' | 'phone'>('email');
   
   // Prevent scrolling when modal is open
@@ -70,6 +71,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
     // Envoi via fetch à Formsubmit.co sans rechargement
     const formDataToSend = new FormData();
     Object.entries({ ...formData, preferredContact: contactMethod }).forEach(([key, value]) => {
@@ -87,17 +89,20 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
     // Pas de _next pour éviter la redirection
 
     try {
-      await fetch(`https://formsubmit.co/${contactEmail}`, {
+      const response = await fetch(`https://formsubmit.co/${contactEmail}`, {
         method: 'POST',
         body: formDataToSend,
         headers: {
           'Accept': 'application/json',
         },
       });
+      if (!response.ok) {
+        throw new Error('Erreur lors de l\'envoi');
+      }
+      setSubmitted(true);
     } catch (err) {
-      // Optionnel : afficher une erreur
+      setSubmitError("L'envoi du devis a échoué. Si vous utilisez Instagram ou Facebook, ouvrez ce site dans un navigateur externe (Safari, Chrome...) pour envoyer votre demande, ou contactez-nous directement par mail ou téléphone. Merci !");
     }
-    setSubmitted(true);
   };
 
 
@@ -203,6 +208,11 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                 </div>
               ) : (
                 <>
+                  {submitError && (
+                    <div className="mb-6 p-4 bg-red-100 border border-red-300 text-red-700 rounded-lg text-center">
+                      {submitError}
+                    </div>
+                  )}
 
                   {/* Texte d'en-tête et explication depuis devis.json (nouveau format) */}
                   {(() => {
