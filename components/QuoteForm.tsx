@@ -117,6 +117,9 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
     setFormData(initial);
   };
 
+  // Détection Instagram in-app browser
+  const isInstagram = typeof navigator !== 'undefined' && /Instagram/i.test(navigator.userAgent);
+
   if (!isOpen) return null;
 
   // DEBUG: log et contenu des fields
@@ -190,6 +193,12 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                     })()}
                     <br/>
                     Il vous recontactera très prochainement par {contactMethod === 'email' ? 'email' : 'téléphone'}.
+                    {isInstagram && (
+                      <>
+                        <br/>
+                        <span className="block mt-4 text-red-700 font-semibold">Attention&nbsp;: Si vous n’avez pas de réponse sous 24h, ouvrez ce site dans un navigateur externe (Safari, Chrome…) ou contactez-nous directement. Instagram peut empêcher l’envoi du mail.</span>
+                      </>
+                    )}
                   </p>
                   <div className="flex justify-center gap-4">
                     <button 
