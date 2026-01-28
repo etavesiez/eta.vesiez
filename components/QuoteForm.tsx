@@ -117,8 +117,9 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
     setFormData(initial);
   };
 
-  // Détection Instagram in-app browser
-  const isInstagram = typeof navigator !== 'undefined' && /Instagram/i.test(navigator.userAgent);
+  // Détection Instagram, Facebook, TikTok in-app browser
+  const isInAppBrowser = typeof navigator !== 'undefined' &&
+    (/Instagram|FBAN|FBAV|FB_IAB|TikTok/i.test(navigator.userAgent));
 
   if (!isOpen) return null;
 
@@ -174,6 +175,12 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
               trackXProps={{ style: { display: 'none' } }}
             >
               <div className="pt-16 p-8 min-h-0 flex-1 flex flex-col">
+                {isInAppBrowser && (
+                  <div className="mb-6 p-4 bg-yellow-100 border border-yellow-300 text-yellow-900 rounded-lg text-center font-semibold">
+                    Attention&nbsp;: L’envoi du formulaire peut ne pas fonctionner depuis Instagram, Facebook ou TikTok. <br />
+                    Merci d’ouvrir ce site dans un navigateur externe (Safari, Chrome…) pour envoyer votre demande de devis.
+                  </div>
+                )}
               {submitted ? (
                 <div className="text-center py-10">
                   <div className="w-20 h-20 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-6">
