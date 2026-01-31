@@ -411,6 +411,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                       <Send className="h-5 w-5" />
                       Envoyer la demande
                     </button>
+                    <div style={{ height: '2rem' }} />
                   </form>
                 </>
               )}
