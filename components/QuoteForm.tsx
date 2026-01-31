@@ -56,10 +56,28 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
   const handleSelectChange = (champ: string, value: string) => {
     setFormData((prev: any) => {
       const current = prev[champ] || [];
+      // Cherche le field concerné
+      const field = fields.find((f: any) => f.champ === champ);
+      let updated = [...current];
+      // Si on décoche une catégorie principale
+      const isMainCategory = field && field.options && field.options.some((opt: any) => typeof opt === 'object' && opt.label === value);
       if (current.includes(value)) {
-        return { ...prev, [champ]: current.filter((v: string) => v !== value) };
+        updated = updated.filter((v: string) => v !== value);
+        // Si c'est une catégorie principale, retirer aussi toutes ses sous-options
+        if (isMainCategory) {
+          const mainOption = field.options.find((opt: any) => typeof opt === 'object' && opt.label === value);
+          if (mainOption && Array.isArray(mainOption.sousOptions)) {
+            mainOption.sousOptions.forEach((sous: any) => {
+              const sousLabel = typeof sous === 'string' ? sous : sous.label;
+              const sousKey = `${value} - ${sousLabel}`;
+              updated = updated.filter((v: string) => v !== sousKey);
+            });
+          }
+        }
+        return { ...prev, [champ]: updated };
       } else {
-        return { ...prev, [champ]: [...current, value] };
+        updated = [...updated, value];
+        return { ...prev, [champ]: updated };
       }
     });
   };
