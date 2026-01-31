@@ -1,0 +1,9 @@
+.quote-checkbox-label {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .quote-checkbox-label {
+    margin-bottom: 1rem;
+  }
+}

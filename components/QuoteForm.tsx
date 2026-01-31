@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './QuoteForm.css';
 import { Scrollbar } from 'react-scrollbars-custom';
 import { Send, CheckCircle, X } from 'lucide-react';
 
@@ -264,7 +265,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                                         const mainChecked = ((formData[field.champ] as string[]) || []).includes(String(option.label));
                                         return (
                                           <div key={option.label} className="flex flex-col gap-1">
-                                            <label className="flex items-center space-x-3 cursor-pointer group py-1">
+                                            <label className="flex items-center space-x-3 cursor-pointer group py-1 quote-checkbox-label">
                                               <input
                                                 type="checkbox"
                                                 className="accent-brand-gold h-5 w-5 cursor-pointer"
@@ -281,7 +282,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                                                 const sousKey = `${option.label} - ${sousLabel}`;
                                                 const sousChecked = ((formData[field.champ] as string[]) || []).includes(String(sousKey));
                                                 return (
-                                                  <label key={sousKey} className={`flex items-center space-x-3 cursor-pointer group ${!mainChecked ? 'opacity-50 pointer-events-none' : ''} py-1`}>
+                                                  <label key={sousKey} className={`flex items-center space-x-3 cursor-pointer group ${!mainChecked ? 'opacity-50 pointer-events-none' : ''} py-1 quote-checkbox-label`}>
                                                     <input
                                                       type="checkbox"
                                                       className="accent-brand-gold h-5 w-5 cursor-pointer"
@@ -307,7 +308,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({ isOpen, onClose }) => {
                                       }
                                       // Option simple (string)
                                       return (
-                                        <label key={typeof option === 'string' ? option : ''} className="flex items-center space-x-3 cursor-pointer group py-1">
+                                        <label key={typeof option === 'string' ? option : ''} className="flex items-center space-x-3 cursor-pointer group py-1 quote-checkbox-label">
                                           <input
                                             type="checkbox"
                                             className="accent-brand-gold h-5 w-5 cursor-pointer"
