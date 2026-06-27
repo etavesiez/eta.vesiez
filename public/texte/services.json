@@ -45,7 +45,7 @@
     "title": "Tassage de silo",
     "desc": "Tassage et compactage de silo pour optimiser le stockage et la conservation.",
     "icon": "Hammer",
-    "unite": "heure"
+    "unite": "Heure"
   },
   {
     "title": "Pressage de balles rondes",
